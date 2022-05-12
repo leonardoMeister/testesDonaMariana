@@ -1,5 +1,4 @@
-﻿using eAgenda.WindowsApp.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes;
+using testesDonaMariana.WinApp.Shared;
 using testesDonaMriana.Controlador.DisciplinaControl;
 using testesDonaMriana.Controlador.MateriaControl;
 using testesDonaMriana.Controlador.QuestaoControl;
@@ -16,13 +17,13 @@ namespace testesDonaMariana.WinApp
 {
     public partial class TelaPrincipal : Form
     {
-        public static TelaPrincipal instancia;
 
         private ICadastravel operacoes;
 
         ControladorMateria controladorMateria;
         ControladorQuestao controladorQuestao;
         ControladorDisciplina controladorDisciplina;
+        public static TelaPrincipal Instancia;
 
         public TelaPrincipal()
         {
@@ -33,7 +34,7 @@ namespace testesDonaMariana.WinApp
 
             PopularAplicativo.Popularaplicativo(controladorMateria, controladorDisciplina, controladorQuestao);
 
-            instancia = this;
+            Instancia = this;
         }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
@@ -88,25 +89,31 @@ namespace testesDonaMariana.WinApp
             btnExcluir.ToolTipText = configuracao.ToolTipExcluir;
             btnFiltrar.ToolTipText = configuracao.ToolTipoFiltrar;
 
-            if (configuracao.DessagruparItens) btnDessagrupar.Enabled = true;
-            else btnDessagrupar.Enabled = false;
-
-            if (configuracao.AgruparItens) btnAgrupar.Enabled = true;
-            else btnAgrupar.Enabled = false;
+            btnFiltrar.Enabled = configuracao.FiltrarItens;
+            btnDessagrupar.Enabled = configuracao.DessagruparItens;
+            btnAgrupar.Enabled = configuracao.AgruparItens;
 
         }
 
         private void disciplinaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ConfiguracaoDisciplinaToolBox configuracao = new ConfiguracaoDisciplinaToolBox();
 
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new AcoesDisciplina(controladorDisciplina, controladorMateria);
+
+            ConfigurarPainelRegistros();
         }
 
-        private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void questãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void questãoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void testesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

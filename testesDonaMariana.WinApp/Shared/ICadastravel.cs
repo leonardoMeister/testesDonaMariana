@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace eAgenda.WindowsApp.Shared
+namespace testesDonaMariana.WinApp.Shared
 {
     public interface ICadastravel
     {

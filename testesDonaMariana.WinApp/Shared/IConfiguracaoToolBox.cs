@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eAgenda.WindowsApp.Shared
+namespace testesDonaMariana.WinApp.Shared
 {
     public interface IConfiguracaoToolBox
     {
@@ -15,6 +15,8 @@ namespace eAgenda.WindowsApp.Shared
         string ToolTipoFiltrar { get; }
         bool DessagruparItens { get; }
         bool AgruparItens { get; }
+        bool FiltrarItens { get; }
+
 
 
     }

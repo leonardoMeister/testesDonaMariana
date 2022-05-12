@@ -11,19 +11,41 @@ namespace TestesDonaMariana.Domain.DisciplinaDir
     public class Disciplina : EntidadeBase
     {
 
-        List<Materia> listaMaterias;
-        string anoLetivo;
+        List<Materia> _listaMaterias;
+        AnoLetivoEnum _anoLetivo;
+        string _nome;
+        static int ID = 1;
 
-
+        public  void GeraId()
+        {
+            _id = ID;
+            ID++;
+        }
         public Disciplina()
         {
-            listaMaterias = new List<Materia>();    
+            _listaMaterias = new List<Materia>();
         }
 
-        public Disciplina(List<Materia> listaMaterias)
+        public Disciplina(List<Materia> listaMaterias, AnoLetivoEnum ano, string nome)
         {
-            this.listaMaterias = listaMaterias;
+            this.ListaMaterias = listaMaterias;
+            this._anoLetivo = ano;
+            this._nome = nome;
+            GeraId();
         }
+
+        public void AdicionarMateria(Materia mat)
+        {
+            ListaMaterias.Add(mat);
+        }
+        public void RemoverMateria(Materia mat)
+        {
+            ListaMaterias.Remove(mat);
+        }
+
+        public List<Materia> ListaMaterias { get => _listaMaterias; set => _listaMaterias = value; }
+        public string Nome { get => _nome; set => _nome = value; }
+        public AnoLetivoEnum AnoLetivo { get => _anoLetivo; set => _anoLetivo = value; }
 
         public override string Validar()
         {

@@ -31,8 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disciplinaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.materiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.toolboxAcoes = new System.Windows.Forms.ToolStrip();
             this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
@@ -66,8 +66,8 @@
             // 
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.disciplinaToolStripMenuItem,
-            this.materiaToolStripMenuItem,
-            this.questãoToolStripMenuItem});
+            this.questãoToolStripMenuItem,
+            this.testesToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -75,23 +75,26 @@
             // disciplinaToolStripMenuItem
             // 
             this.disciplinaToolStripMenuItem.Name = "disciplinaToolStripMenuItem";
-            this.disciplinaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.disciplinaToolStripMenuItem.Text = "Disciplina";
+            this.disciplinaToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.disciplinaToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.disciplinaToolStripMenuItem.Text = "Disciplina / Matéria";
             this.disciplinaToolStripMenuItem.Click += new System.EventHandler(this.disciplinaToolStripMenuItem_Click);
-            // 
-            // materiaToolStripMenuItem
-            // 
-            this.materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.materiaToolStripMenuItem.Text = "Materia";
-            this.materiaToolStripMenuItem.Click += new System.EventHandler(this.materiaToolStripMenuItem_Click);
             // 
             // questãoToolStripMenuItem
             // 
             this.questãoToolStripMenuItem.Name = "questãoToolStripMenuItem";
-            this.questãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.questãoToolStripMenuItem.Text = "Questão";
+            this.questãoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.questãoToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.questãoToolStripMenuItem.Text = "Questões";
             this.questãoToolStripMenuItem.Click += new System.EventHandler(this.questãoToolStripMenuItem_Click);
+            // 
+            // testesToolStripMenuItem
+            // 
+            this.testesToolStripMenuItem.Name = "testesToolStripMenuItem";
+            this.testesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.testesToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.testesToolStripMenuItem.Text = "Testes (Prova)";
+            this.testesToolStripMenuItem.Click += new System.EventHandler(this.testesToolStripMenuItem_Click);
             // 
             // panelRegistros
             // 
@@ -254,7 +257,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cadastrosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disciplinaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem materiaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem questãoToolStripMenuItem;
         private System.Windows.Forms.Panel panelRegistros;
         private System.Windows.Forms.ToolStrip toolboxAcoes;
@@ -269,5 +271,6 @@
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripMenuItem testesToolStripMenuItem;
     }
 }

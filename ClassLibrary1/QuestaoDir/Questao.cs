@@ -10,19 +10,28 @@ namespace TestesDonaMariana.Domain.QuestaoDir
     public class Questao : EntidadeBase
     {
 
-        BimestreEnum bimestre;
-        string titulo;
+        string _titulo;
+        string _enunciado;
+        List<string> _listaAlternativas;
+        string _respostaCorreta;
 
         public Questao()
         {
 
         }
 
-        public Questao(BimestreEnum bimestre, string titulo)
+        public Questao(string titulo, string enunciado, List<string> listaAlternativas, string respostaCorreta)
         {
-            this.bimestre = bimestre;
-            this.titulo = titulo;
+            _titulo = titulo;
+            _enunciado = enunciado;
+            _listaAlternativas = listaAlternativas;
+            _respostaCorreta = respostaCorreta;
         }
+
+        public string Titulo { get => _titulo; set => _titulo = value; }
+        public string Enunciado { get => _enunciado; set => _enunciado = value; }
+        public List<string> ListaAlternativas { get => _listaAlternativas; set => _listaAlternativas = value; }
+        public string RespostaCorreta { get => _respostaCorreta; set => _respostaCorreta = value; }
 
         public override string Validar()
         {

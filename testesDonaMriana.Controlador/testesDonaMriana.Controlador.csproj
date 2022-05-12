@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\TestesDonaMariana.Domain.csproj" />
   </ItemGroup>
 

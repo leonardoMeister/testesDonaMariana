@@ -1,19 +1,18 @@
-﻿//using eAgenda.Dominio.Shared;
-//using eAgenda.Dominio.TarefaModule;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestesDonaMariana.Domain.Shared;
 
-namespace eAgenda.WindowsApp.Shared
+namespace testesDonaMariana.WinApp.Shared
 {
     public interface IConfiguravelDataGridView
     {
         DataGridViewColumn[] ObterColunas();
         int ObtemIdSelecionado();
-        //void AtualizarRegistros(List<EntidadeBase> tarefas); 
+        void AtualizarRegistros(List<EntidadeBase> tarefas); 
 
     }
 }

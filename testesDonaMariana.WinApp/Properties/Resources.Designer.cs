@@ -63,9 +63,39 @@ namespace testesDonaMariana.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap erro {
+            get {
+                object obj = ResourceManager.GetObject("erro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap erro_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("erro-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Filter_Configuration {
             get {
                 object obj = ResourceManager.GetObject("Filter Configuration", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ok_ {
+            get {
+                object obj = ResourceManager.GetObject("Ok ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +186,16 @@ namespace testesDonaMariana.WinApp.Properties {
         internal static System.Drawing.Bitmap outline_view_list_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_view_list_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stock_vector_check_marks_icon_signs_vector_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("stock-vector-check-marks-icon-signs-vector-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

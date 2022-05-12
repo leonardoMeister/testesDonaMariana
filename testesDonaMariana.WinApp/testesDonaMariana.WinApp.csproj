@@ -23,12 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Shared\" />
+    <ProjectReference Include="..\ClassLibrary1\TestesDonaMariana.Domain.csproj" />
+    <ProjectReference Include="..\testesDonaMriana.Controlador\testesDonaMriana.Controlador.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\TestesDonaMariana.Domain.csproj" />
-    <ProjectReference Include="..\testesDonaMriana.Controlador\testesDonaMriana.Controlador.csproj" />
+    <Folder Include="Modulos\QuestaoMol\ColetaDados\" />
+    <Folder Include="Modulos\QuestaoMol\Configuracoes\" />
   </ItemGroup>
 
 </Project>
