@@ -7,22 +7,27 @@ using System.Windows.Forms;
 using testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados;
 using testesDonaMariana.WinApp.Shared;
 using TestesDonaMariana.Domain.DisciplinaDir;
+using TestesDonaMariana.Domain.MateriaDir;
+using TestesDonaMariana.Domain.QuestaoDir;
 using TestesDonaMariana.Domain.Shared;
 using testesDonaMriana.Controlador.DisciplinaControl;
 using testesDonaMriana.Controlador.MateriaControl;
+using testesDonaMriana.Controlador.QuestaoControl;
 
 namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 {
     public class AcoesDisciplina : ICadastravel
     {
         ControladorDisciplina controladorDisciplina;
+        ControladorQuestao controladorQuestao;
         ControladorMateria controladorMateria;
 
         TabelaListaDisciplina tabelaListaDisciplina;
-        public AcoesDisciplina(ControladorDisciplina control, ControladorMateria controlMate)
+        public AcoesDisciplina(ControladorDisciplina control, ControladorMateria controlMate,ControladorQuestao controlQuest)
         {
             this.controladorDisciplina = control;
             this.controladorMateria = controlMate;
+            this.controladorQuestao = controlQuest;
             this.tabelaListaDisciplina= new TabelaListaDisciplina();
         }
 
@@ -76,6 +81,11 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
             if (MessageBox.Show($"Tem certeza que deseja excluir a Disciplina: [{disciplinaSelecionada.Nome}] ?",
                 "Exclusão de Disciplinas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
+
+                Disciplina disc = controladorDisciplina.SelecionarPorId(id);
+
+                RemoverTodosOsItensComReferencia(disc);
+
                 controladorDisciplina.Excluir(id);
 
                 List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodos().Cast<EntidadeBase>().ToList();
@@ -83,6 +93,18 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
                 tabelaListaDisciplina.AtualizarRegistros(disciplinas);
 
                 TelaPrincipal.Instancia.AtualizarRodape($"disciplina: [{disciplinaSelecionada.Nome}] removida com sucesso");
+            }
+        }
+
+        private void RemoverTodosOsItensComReferencia(Disciplina disc)
+        {
+            foreach(Materia mat in disc.ListaMaterias)
+            {
+                foreach(Questao quest in mat.ListaQuestoes)
+                {
+                    controladorQuestao.Excluir(quest._id);
+                }
+                controladorMateria.Existe(mat._id);
             }
         }
 
@@ -100,8 +122,6 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                tela.Disciplina.GeraId();
-
                 controladorDisciplina.InserirNovo(tela.Disciplina);
 
                 List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodos().Cast<EntidadeBase>().ToList();

@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace TestesDonaMariana.Domain.QuestaoDir
 {
-    public class ValidadoQuestao : AbstractValidator<Questao>
+    public class ValidadorQuestao : AbstractValidator<Questao>
     {
-        public ValidadoQuestao()
+        public ValidadorQuestao()
         {
-            RuleFor(x => x.Enunciado)
+            RuleFor(x => x.Titulo)
                 .NotEmpty().NotNull();
-            RuleFor(x => x.RespostaCorreta)
+            RuleFor(x => x.Enunciado)
                 .NotEmpty().NotNull();
             RuleFor(x => x.ListaAlternativas)
                 .NotEmpty().NotNull();
-            RuleFor(x => x.Titulo)
+            RuleFor(x => x.RespostaCorreta)
                 .NotEmpty().NotNull();
         }
     }

@@ -15,25 +15,17 @@ namespace TestesDonaMariana.Domain.MateriaDir
         List<Questao> _listaQuestoes;
         List<BimestreEnum> _listaBimestres;
         string _nome;
-        private static int ID =1;
-
-        private void GeraId()
-        {
-            _id = ID;
-            ID++;
-        }
 
         public Materia()
         {
 
         }
 
-        public Materia(List<Questao> listaQuestoes, List<BimestreEnum> listaBimestre, string nome)
+        public Materia(List<BimestreEnum> listaBimestre, string nome)
         {
-            this.ListaQuestoes = listaQuestoes;
+            this.ListaQuestoes = new List<Questao>();
             this._listaBimestres = listaBimestre;
             this._nome = nome;
-            GeraId();
         }
 
         public List<Questao> ListaQuestoes { get => _listaQuestoes; set => _listaQuestoes = value; }

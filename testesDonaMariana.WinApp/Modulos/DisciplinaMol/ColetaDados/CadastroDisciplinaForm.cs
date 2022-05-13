@@ -170,7 +170,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
                 if (box3.Checked is true) listaBimestres.Add(BimestreEnum.TerceiroBimestre);
                 if (box4.Checked is true) listaBimestres.Add(BimestreEnum.QuartoBimestre);
 
-                Materia mat = new Materia(null, listaBimestres, nomeMateria);
+                Materia mat = new Materia(listaBimestres, nomeMateria);
                 return mat;
             }
             else

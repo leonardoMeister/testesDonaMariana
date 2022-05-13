@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes;
+using testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes;
 using testesDonaMariana.WinApp.Shared;
 using testesDonaMriana.Controlador.DisciplinaControl;
 using testesDonaMriana.Controlador.MateriaControl;
@@ -103,13 +104,26 @@ namespace testesDonaMariana.WinApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new AcoesDisciplina(controladorDisciplina, controladorMateria);
+            operacoes = new AcoesDisciplina(controladorDisciplina, controladorMateria, controladorQuestao);
 
             ConfigurarPainelRegistros();
         }
 
         private void questãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (controladorDisciplina.SelecionarTodos().Count > 0)
+            {
+                ConfiguracaoQuestaoToolBox configuracao = new ConfiguracaoQuestaoToolBox();
+
+                ConfigurarToolBox(configuracao);
+
+                AtualizarRodape(configuracao.TipoCadastro);
+
+                operacoes = new AcoesQuestao(controladorQuestao, controladorDisciplina);
+
+                ConfigurarPainelRegistros();
+            }
+            else MessageBox.Show("Para poder Gerenciar Questões Adicione antes uma Disciplina!");
 
         }
 

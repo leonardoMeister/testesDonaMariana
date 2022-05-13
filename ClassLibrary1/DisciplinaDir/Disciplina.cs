@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Domain.MateriaDir;
+using TestesDonaMariana.Domain.QuestaoDir;
 using TestesDonaMariana.Domain.Shared;
 
 namespace TestesDonaMariana.Domain.DisciplinaDir
@@ -14,24 +15,15 @@ namespace TestesDonaMariana.Domain.DisciplinaDir
         List<Materia> _listaMaterias;
         AnoLetivoEnum _anoLetivo;
         string _nome;
-        static int ID = 1;
-
-        public  void GeraId()
-        {
-            _id = ID;
-            ID++;
-        }
         public Disciplina()
         {
             _listaMaterias = new List<Materia>();
         }
-
         public Disciplina(List<Materia> listaMaterias, AnoLetivoEnum ano, string nome)
         {
             this.ListaMaterias = listaMaterias;
             this._anoLetivo = ano;
             this._nome = nome;
-            GeraId();
         }
 
         public void AdicionarMateria(Materia mat)
@@ -46,6 +38,11 @@ namespace TestesDonaMariana.Domain.DisciplinaDir
         public List<Materia> ListaMaterias { get => _listaMaterias; set => _listaMaterias = value; }
         public string Nome { get => _nome; set => _nome = value; }
         public AnoLetivoEnum AnoLetivo { get => _anoLetivo; set => _anoLetivo = value; }
+
+        public override string ToString()
+        {
+            return $"Id: {_id}, Nome: {Nome}, Ano Letivo: {_anoLetivo}";
+        }
 
         public override string Validar()
         {

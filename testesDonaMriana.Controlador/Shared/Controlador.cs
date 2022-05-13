@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TestesDonaMariana.Domain.Shared;
 using FluentValidation.Results;
+using System.Linq;
 
 namespace eAgenda.Controladores.Shared
 {
@@ -10,7 +11,12 @@ namespace eAgenda.Controladores.Shared
     {
         public abstract AbstractValidator<T> ObterValidador();
         public abstract List<T> ObterRegistros();
-
+        public virtual int ObterId()
+        {
+            var lista = ObterRegistros();
+            if (lista.Count == 0) return 1;
+            else return lista.Max(x => x._id)+1;
+        }
         public virtual ValidationResult InserirNovo(T registro)
         {
             var validator = ObterValidador();
@@ -20,6 +26,7 @@ namespace eAgenda.Controladores.Shared
             if (resultadoValidacao.IsValid)
             {
                 var lista = ObterRegistros();
+                registro._id = ObterId();
                 lista.Add(registro);
             }
             return resultadoValidacao;
@@ -50,7 +57,7 @@ namespace eAgenda.Controladores.Shared
 
             var lista = ObterRegistros();
 
-            if (lista.Remove(lista.Find(x => x._id == id))   ==false)
+            if (lista.Remove(lista.Find(x => x._id == id)) == false)
                 resultadoValidacao.Errors.Add(new ValidationFailure("", "Não foi possível remover o registro"));
             return resultadoValidacao;
         }

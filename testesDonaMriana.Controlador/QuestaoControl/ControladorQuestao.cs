@@ -30,7 +30,7 @@ namespace testesDonaMriana.Controlador.QuestaoControl
 
         public override AbstractValidator<Questao> ObterValidador()
         {
-            return new ValidadoQuestao();
+            return new ValidadorQuestao();
         }
     }
 }
