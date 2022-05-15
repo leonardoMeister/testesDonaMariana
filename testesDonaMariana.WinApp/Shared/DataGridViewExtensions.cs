@@ -43,7 +43,7 @@ namespace testesDonaMariana.WinApp.Shared
             grid.AllowUserToDeleteRows = false;
 
             grid.BorderStyle = BorderStyle.None;
-           // grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;  //modificar isso aqui cria erros de redimencionamento de colunas, não faça
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;  //modificar isso aqui cria erros de redimencionamento de colunas, não faça
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             
 

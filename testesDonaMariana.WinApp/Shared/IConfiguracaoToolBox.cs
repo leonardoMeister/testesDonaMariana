@@ -16,8 +16,11 @@ namespace testesDonaMariana.WinApp.Shared
         bool DessagruparItens { get; }
         bool AgruparItens { get; }
         bool FiltrarItens { get; }
-
-
+        bool GerarPdf { get; }
+        string ToolTipoPdf { get; }
+        bool BtnEditar { get; }
+        string ToolTipoClonar { get; }  
+        bool BtnClonar { get; }
 
     }
 }

@@ -43,9 +43,12 @@
             this.btnAgrupar = new System.Windows.Forms.ToolStripButton();
             this.btnDessagrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnPDF = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.btnClonar = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolboxAcoes.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -117,6 +120,9 @@
             this.btnAgrupar,
             this.btnDessagrupar,
             this.toolStripSeparator2,
+            this.btnPDF,
+            this.btnClonar,
+            this.toolStripSeparator3,
             this.labelTipoCadastro});
             this.toolboxAcoes.Location = new System.Drawing.Point(0, 28);
             this.toolboxAcoes.Name = "toolboxAcoes";
@@ -200,6 +206,21 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 41);
             // 
+            // btnPDF
+            // 
+            this.btnPDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnPDF.Image = global::testesDonaMariana.WinApp.Properties.Resources.pdf_removebg_preview__1__removebg_preview;
+            this.btnPDF.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(29, 38);
+            this.btnPDF.Text = "toolStripButton1";
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 41);
+            // 
             // labelTipoCadastro
             // 
             this.labelTipoCadastro.Name = "labelTipoCadastro";
@@ -223,6 +244,16 @@
             this.statusStrip1.Size = new System.Drawing.Size(902, 26);
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // btnClonar
+            // 
+            this.btnClonar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnClonar.Image = global::testesDonaMariana.WinApp.Properties.Resources._24;
+            this.btnClonar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClonar.Name = "btnClonar";
+            this.btnClonar.Size = new System.Drawing.Size(29, 38);
+            this.btnClonar.Text = "toolStripButton1";
+            this.btnClonar.Click += new System.EventHandler(this.btnClonar_Click);
             // 
             // TelaPrincipal
             // 
@@ -272,5 +303,8 @@
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem testesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton btnPDF;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnClonar;
     }
 }

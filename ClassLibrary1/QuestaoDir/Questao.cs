@@ -18,11 +18,6 @@ namespace TestesDonaMariana.Domain.QuestaoDir
         string _respostaCorreta;
         Disciplina _disciplina;
         Materia materia;
-        
-        public Questao()
-        {
-
-        }
 
         public Questao(string titulo, string enunciado, List<string> listaAlternativas, string respostaCorreta, Disciplina dis,Materia mate)
         {

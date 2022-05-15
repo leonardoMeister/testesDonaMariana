@@ -25,8 +25,6 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             set
             {
                 questao = value;
-
-
             }
         }
 

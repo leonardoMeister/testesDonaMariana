@@ -63,6 +63,16 @@ namespace testesDonaMariana.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _24 {
+            get {
+                object obj = ResourceManager.GetObject("24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap erro {
             get {
                 object obj = ResourceManager.GetObject("erro", resourceCulture);
@@ -186,6 +196,16 @@ namespace testesDonaMariana.WinApp.Properties {
         internal static System.Drawing.Bitmap outline_view_list_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_view_list_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pdf_removebg_preview__1__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("pdf-removebg-preview__1_-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

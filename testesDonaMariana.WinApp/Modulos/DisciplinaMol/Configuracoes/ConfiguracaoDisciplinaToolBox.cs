@@ -24,5 +24,15 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
         public bool DessagruparItens => false;
 
         public bool AgruparItens => false;
+
+        public bool GerarPdf => false;
+
+        public string ToolTipoPdf => "Gerar Pdf";
+
+        public bool BtnEditar => true;
+
+        public string ToolTipoClonar => "";
+
+        public bool BtnClonar => false;
     }
 }

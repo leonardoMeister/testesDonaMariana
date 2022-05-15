@@ -24,5 +24,15 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
         public bool AgruparItens => false;
 
         public bool FiltrarItens => false;
+
+        public bool GerarPdf => false;
+
+        public string ToolTipoPdf => "Gerar PDF";
+
+        public bool BtnEditar => false;
+
+        public string ToolTipoClonar => "";
+
+        public bool BtnClonar => false;
     }
 }
