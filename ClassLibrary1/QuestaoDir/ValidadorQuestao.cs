@@ -14,7 +14,7 @@ namespace TestesDonaMariana.Domain.QuestaoDir
             RuleFor(x => x.Titulo)
                 .NotEmpty().NotNull();
             RuleFor(x => x.Enunciado)
-                .NotEmpty().NotNull();
+                .NotEmpty().NotNull(); 
             RuleFor(x => x.ListaAlternativas)
                 .NotEmpty().NotNull();
             RuleFor(x => x.RespostaCorreta)
