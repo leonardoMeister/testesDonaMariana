@@ -62,7 +62,7 @@
             this.comboDisciplina.Location = new System.Drawing.Point(492, 29);
             this.comboDisciplina.Name = "comboDisciplina";
             this.comboDisciplina.Size = new System.Drawing.Size(306, 28);
-            this.comboDisciplina.TabIndex = 0;
+            this.comboDisciplina.TabIndex = 2;
             this.comboDisciplina.SelectedIndexChanged += new System.EventHandler(this.comboDisciplina_SelectedIndexChanged);
             // 
             // label1
@@ -90,7 +90,7 @@
             this.comboAnoLetivo.Location = new System.Drawing.Point(91, 29);
             this.comboAnoLetivo.Name = "comboAnoLetivo";
             this.comboAnoLetivo.Size = new System.Drawing.Size(306, 28);
-            this.comboAnoLetivo.TabIndex = 2;
+            this.comboAnoLetivo.TabIndex = 1;
             this.comboAnoLetivo.SelectedIndexChanged += new System.EventHandler(this.comboAnoLetivo_SelectedIndexChanged);
             // 
             // label3
@@ -110,7 +110,7 @@
             this.comboMateria.Location = new System.Drawing.Point(91, 81);
             this.comboMateria.Name = "comboMateria";
             this.comboMateria.Size = new System.Drawing.Size(306, 28);
-            this.comboMateria.TabIndex = 4;
+            this.comboMateria.TabIndex = 3;
             this.comboMateria.SelectedIndexChanged += new System.EventHandler(this.comboMateria_SelectedIndexChanged);
             // 
             // grupoQuestao
@@ -127,7 +127,7 @@
             this.grupoQuestao.Location = new System.Drawing.Point(0, 128);
             this.grupoQuestao.Name = "grupoQuestao";
             this.grupoQuestao.Size = new System.Drawing.Size(828, 495);
-            this.grupoQuestao.TabIndex = 6;
+            this.grupoQuestao.TabIndex = 4;
             this.grupoQuestao.TabStop = false;
             this.grupoQuestao.Text = "Dados Questão";
             // 
@@ -146,7 +146,7 @@
             this.btnAdicionar.Location = new System.Drawing.Point(666, 438);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(134, 45);
-            this.btnAdicionar.TabIndex = 11;
+            this.btnAdicionar.TabIndex = 13;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
@@ -179,6 +179,7 @@
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(694, 217);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 29);
@@ -194,7 +195,7 @@
             this.comboAlternativaCorreta.Location = new System.Drawing.Point(153, 62);
             this.comboAlternativaCorreta.Name = "comboAlternativaCorreta";
             this.comboAlternativaCorreta.Size = new System.Drawing.Size(327, 28);
-            this.comboAlternativaCorreta.TabIndex = 7;
+            this.comboAlternativaCorreta.TabIndex = 11;
             // 
             // listaAlternativas
             // 
@@ -204,9 +205,11 @@
             this.listaAlternativas.Name = "listaAlternativas";
             this.listaAlternativas.Size = new System.Drawing.Size(471, 124);
             this.listaAlternativas.TabIndex = 4;
+            this.listaAlternativas.TabStop = false;
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(592, 217);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 29);
@@ -247,7 +250,7 @@
             this.txtEnunciado.Multiline = true;
             this.txtEnunciado.Name = "txtEnunciado";
             this.txtEnunciado.Size = new System.Drawing.Size(644, 78);
-            this.txtEnunciado.TabIndex = 3;
+            this.txtEnunciado.TabIndex = 6;
             // 
             // label5
             // 
@@ -263,7 +266,7 @@
             this.txtTitulo.Location = new System.Drawing.Point(101, 36);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(644, 27);
-            this.txtTitulo.TabIndex = 1;
+            this.txtTitulo.TabIndex = 4;
             // 
             // label4
             // 
