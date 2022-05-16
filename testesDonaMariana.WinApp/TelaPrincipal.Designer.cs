@@ -44,11 +44,11 @@
             this.btnDessagrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPDF = new System.Windows.Forms.ToolStripButton();
+            this.btnClonar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.btnClonar = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolboxAcoes.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -106,7 +106,7 @@
             this.panelRegistros.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelRegistros.Name = "panelRegistros";
             this.panelRegistros.Size = new System.Drawing.Size(902, 600);
-            this.panelRegistros.TabIndex = 6;
+            this.panelRegistros.TabIndex = 9999;
             // 
             // toolboxAcoes
             // 
@@ -216,6 +216,16 @@
             this.btnPDF.Text = "toolStripButton1";
             this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
             // 
+            // btnClonar
+            // 
+            this.btnClonar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnClonar.Image = global::testesDonaMariana.WinApp.Properties.Resources._24;
+            this.btnClonar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClonar.Name = "btnClonar";
+            this.btnClonar.Size = new System.Drawing.Size(29, 38);
+            this.btnClonar.Text = "toolStripButton1";
+            this.btnClonar.Click += new System.EventHandler(this.btnClonar_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -244,16 +254,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(902, 26);
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // btnClonar
-            // 
-            this.btnClonar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnClonar.Image = global::testesDonaMariana.WinApp.Properties.Resources._24;
-            this.btnClonar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnClonar.Name = "btnClonar";
-            this.btnClonar.Size = new System.Drawing.Size(29, 38);
-            this.btnClonar.Text = "toolStripButton1";
-            this.btnClonar.Click += new System.EventHandler(this.btnClonar_Click);
             // 
             // TelaPrincipal
             // 

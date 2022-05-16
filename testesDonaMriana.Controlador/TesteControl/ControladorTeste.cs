@@ -28,9 +28,9 @@ namespace testesDonaMriana.Controlador.TesteControl
             return this.testes;
         }
 
-        public override AbstractValidator<Teste> ObterValidador()
+        public override AbstractValidator<Teste> ObterValidador(Teste item, List<Teste> lista)
         {
-            return new ValidarTeste();
+            return new ValidarTeste(item,lista);
         }
     }
 }

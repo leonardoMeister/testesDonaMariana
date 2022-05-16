@@ -9,7 +9,7 @@ namespace eAgenda.Controladores.Shared
 {
     public abstract class Controlador<T> where T : EntidadeBase
     {
-        public abstract AbstractValidator<T> ObterValidador();
+        public abstract AbstractValidator<T> ObterValidador(T item, List<T> lista);
         public abstract List<T> ObterRegistros();
         public virtual int ObterId()
         {
@@ -19,7 +19,7 @@ namespace eAgenda.Controladores.Shared
         }
         public virtual ValidationResult InserirNovo(T registro)
         {
-            var validator = ObterValidador();
+            var validator = ObterValidador(registro, SelecionarTodos());
 
             var resultadoValidacao = validator.Validate(registro);
 
@@ -33,7 +33,7 @@ namespace eAgenda.Controladores.Shared
         }
         public virtual ValidationResult Editar(int id, T registro)
         {
-            var validator = ObterValidador();
+            var validator = ObterValidador(registro, SelecionarTodos());
 
             var resultadoValidacao = validator.Validate(registro);
 

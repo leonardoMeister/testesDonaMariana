@@ -28,9 +28,9 @@ namespace testesDonaMriana.Controlador.QuestaoControl
             return questoes;
         }
 
-        public override AbstractValidator<Questao> ObterValidador()
+        public override AbstractValidator<Questao> ObterValidador(Questao item, List<Questao> lista)
         {
-            return new ValidadorQuestao();
+            return new ValidadorQuestao(item,lista);
         }
     }
 }

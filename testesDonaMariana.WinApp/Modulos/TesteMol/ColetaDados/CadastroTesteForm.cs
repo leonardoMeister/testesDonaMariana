@@ -13,6 +13,7 @@ using TestesDonaMariana.Domain.MateriaDir;
 using TestesDonaMariana.Domain.QuestaoDir;
 using TestesDonaMariana.Domain.TesteDir;
 using testesDonaMriana.Controlador.DisciplinaControl;
+using testesDonaMriana.Controlador.TesteControl;
 
 namespace testesDonaMariana.WinApp.Modulos.TesteMol.ColetaDados
 {
@@ -20,11 +21,13 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.ColetaDados
     {
         private Teste teste;
         private ControladorDisciplina controladorDisciplina;
+        private ControladorTeste controladorTeste;
 
-        public CadastroTesteForm(ControladorDisciplina controlDisci)
+        public CadastroTesteForm(ControladorDisciplina controlDisci, ControladorTeste controladorTeste)
         {
             InitializeComponent();
             this.controladorDisciplina = controlDisci;
+            this.controladorTeste = controladorTeste;
             CarregarAnosLetivos();
             grupoTeste.Enabled = false;
             lista1.Enabled = true;
@@ -200,7 +203,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.ColetaDados
 
             Teste teste = new Teste(ano,disciplina,listaMaterias,txtNomeTeste.Text,listaQuestaos,numeroQuestoesProva);
 
-            var validacao = new ValidarTeste().Validate(teste);
+            var validacao = new ValidarTeste(teste,controladorTeste.SelecionarTodos()).Validate(teste);
 
             if (validacao.IsValid == false)
             {

@@ -11,6 +11,7 @@ using TestesDonaMariana.Domain.DisciplinaDir;
 using TestesDonaMariana.Domain.MateriaDir;
 using TestesDonaMariana.Domain.QuestaoDir;
 using testesDonaMriana.Controlador.DisciplinaControl;
+using testesDonaMriana.Controlador.QuestaoControl;
 
 namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
 {
@@ -18,7 +19,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
     {
         private Questao questao;
         ControladorDisciplina controlDisciplina;
-
+        ControladorQuestao controladorQuestao;
         public Questao Questao
         {
             get { return questao; }
@@ -28,9 +29,10 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             }
         }
 
-        public CadastroQuestaoForm(ControladorDisciplina controlDisci)
+        public CadastroQuestaoForm(ControladorDisciplina controlDisci, ControladorQuestao controladorQuestao)
         {
             InitializeComponent();
+            this.controladorQuestao = controladorQuestao;
             controlDisciplina = controlDisci;
             CarregarAnosLetivos();
         }
@@ -142,7 +144,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
                 Questao quest = new Questao(txtTitulo.Text, txtEnunciado.Text, listaAlternativas.Items.Cast<String>().ToList(),
                     comboAlternativaCorreta.Text, (Disciplina)comboDisciplina.SelectedItem, mate);
 
-                var validacao = new ValidadorQuestao().Validate(quest);
+                var validacao = new ValidadorQuestao(quest,controladorQuestao.SelecionarTodos()).Validate(quest);
 
                 if (validacao.IsValid == false)
                 {

@@ -28,9 +28,9 @@ namespace testesDonaMriana.Controlador.MateriaControl
             return listaMaterias;
         }
 
-        public override AbstractValidator<Materia> ObterValidador()
+        public override AbstractValidator<Materia> ObterValidador(Materia item, List<Materia> lista)
         {
-            return new ValidadorMateria();
+            return new ValidadorMateria(item,lista);
         }
     }
 }

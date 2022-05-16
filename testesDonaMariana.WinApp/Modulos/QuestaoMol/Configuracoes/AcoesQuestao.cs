@@ -15,14 +15,14 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 {
     public class AcoesQuestao : ICadastravel
     {
-        private readonly ControladorQuestao controlador;
+        private readonly ControladorQuestao controladorQuestao;
         private readonly TabelaListaQuestao tabelaQuestao;
         private readonly ControladorDisciplina controladorDisc;
-
         public AcoesQuestao(ControladorQuestao controlador,ControladorDisciplina controlDisc)
         {
+            
             this.controladorDisc = controlDisc;
-            this.controlador = controlador;
+            this.controladorQuestao = controlador;
             this.tabelaQuestao = new TabelaListaQuestao(); ;
         }
 
@@ -42,17 +42,17 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
                 return;
             }
 
-            Questao questaoSelecionada = controlador.SelecionarPorId(id);
+            Questao questaoSelecionada = controladorQuestao.SelecionarPorId(id);
 
-            CadastroQuestaoForm tela = new CadastroQuestaoForm(controladorDisc);
+            CadastroQuestaoForm tela = new CadastroQuestaoForm(controladorDisc,controladorQuestao);
 
             tela.Questao = questaoSelecionada;
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.Questao);
+                controladorQuestao.Editar(id, tela.Questao);
 
-                List<EntidadeBase> questoes = controlador.SelecionarTodos().Cast<EntidadeBase>().ToList(); ;
+                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodos().Cast<EntidadeBase>().ToList(); ;
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
@@ -71,14 +71,14 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
                 return;
             }
 
-            Questao questaoSelecionada = controlador.SelecionarPorId(id);
+            Questao questaoSelecionada = controladorQuestao.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir a Questão: [{questaoSelecionada.Titulo}] ?",
                 "Exclusão de Questões", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                controladorQuestao.Excluir(id);
 
-                List<EntidadeBase> questoes = controlador.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodos().Cast<EntidadeBase>().ToList();
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
@@ -93,13 +93,13 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
         public void InserirNovoRegistro()
         {
-            CadastroQuestaoForm tela = new CadastroQuestaoForm(controladorDisc);
+            CadastroQuestaoForm tela = new CadastroQuestaoForm(controladorDisc,controladorQuestao);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.Questao);
+                controladorQuestao.InserirNovo(tela.Questao);
 
-                List<EntidadeBase> questoes = controlador.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodos().Cast<EntidadeBase>().ToList();
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
@@ -109,7 +109,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
         public UserControl ObterTabela()
         {
-            List<EntidadeBase> questoes = controlador.SelecionarTodos().Cast<EntidadeBase>().ToList();
+            List<EntidadeBase> questoes = controladorQuestao.SelecionarTodos().Cast<EntidadeBase>().ToList();
 
             tabelaQuestao.AtualizarRegistros(questoes);
 

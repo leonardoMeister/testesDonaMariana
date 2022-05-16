@@ -33,15 +33,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboDisciplina = new System.Windows.Forms.ComboBox();
             this.grupoTeste = new System.Windows.Forms.GroupBox();
+            this.txtNumeroQuestoes = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtNomeTeste = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.lista1 = new System.Windows.Forms.ListBox();
             this.lista2 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtNomeTeste = new System.Windows.Forms.TextBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnConfirmar = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNumeroQuestoes = new System.Windows.Forms.MaskedTextBox();
             this.grupoTeste.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +61,7 @@
             this.comboAnoLetivo.Location = new System.Drawing.Point(106, 12);
             this.comboAnoLetivo.Name = "comboAnoLetivo";
             this.comboAnoLetivo.Size = new System.Drawing.Size(306, 28);
-            this.comboAnoLetivo.TabIndex = 8;
+            this.comboAnoLetivo.TabIndex = 1;
             this.comboAnoLetivo.SelectedIndexChanged += new System.EventHandler(this.comboAnoLetivo_SelectedIndexChanged);
             // 
             // label1
@@ -81,7 +81,7 @@
             this.comboDisciplina.Location = new System.Drawing.Point(507, 12);
             this.comboDisciplina.Name = "comboDisciplina";
             this.comboDisciplina.Size = new System.Drawing.Size(306, 28);
-            this.comboDisciplina.TabIndex = 6;
+            this.comboDisciplina.TabIndex = 2;
             this.comboDisciplina.SelectedIndexChanged += new System.EventHandler(this.comboDisciplina_SelectedIndexChanged);
             // 
             // grupoTeste
@@ -96,75 +96,18 @@
             this.grupoTeste.Location = new System.Drawing.Point(0, 294);
             this.grupoTeste.Name = "grupoTeste";
             this.grupoTeste.Size = new System.Drawing.Size(828, 82);
-            this.grupoTeste.TabIndex = 12;
+            this.grupoTeste.TabIndex = 4;
             this.grupoTeste.TabStop = false;
             this.grupoTeste.Text = "Dados Teste";
             // 
-            // lista1
+            // txtNumeroQuestoes
             // 
-            this.lista1.Cursor = System.Windows.Forms.Cursors.No;
-            this.lista1.FormattingEnabled = true;
-            this.lista1.ItemHeight = 20;
-            this.lista1.Location = new System.Drawing.Point(18, 86);
-            this.lista1.Name = "lista1";
-            this.lista1.Size = new System.Drawing.Size(400, 204);
-            this.lista1.TabIndex = 13;
-            this.lista1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lista1_MouseDoubleClick);
-            // 
-            // lista2
-            // 
-            this.lista2.FormattingEnabled = true;
-            this.lista2.ItemHeight = 20;
-            this.lista2.Location = new System.Drawing.Point(427, 86);
-            this.lista2.Name = "lista2";
-            this.lista2.Size = new System.Drawing.Size(395, 204);
-            this.lista2.TabIndex = 14;
-            this.lista2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lista2_MouseDoubleClick);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Materias";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 20);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Nome Teste";
-            // 
-            // txtNomeTeste
-            // 
-            this.txtNomeTeste.Location = new System.Drawing.Point(114, 34);
-            this.txtNomeTeste.Name = "txtNomeTeste";
-            this.txtNomeTeste.Size = new System.Drawing.Size(151, 27);
-            this.txtNomeTeste.TabIndex = 16;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(600, 34);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(108, 38);
-            this.btnCancelar.TabIndex = 17;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnConfirmar
-            // 
-            this.btnConfirmar.Location = new System.Drawing.Point(714, 34);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(108, 38);
-            this.btnConfirmar.TabIndex = 18;
-            this.btnConfirmar.Text = "Confirmar";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
-            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            this.txtNumeroQuestoes.Location = new System.Drawing.Point(442, 34);
+            this.txtNumeroQuestoes.Mask = "00000";
+            this.txtNumeroQuestoes.Name = "txtNumeroQuestoes";
+            this.txtNumeroQuestoes.Size = new System.Drawing.Size(77, 27);
+            this.txtNumeroQuestoes.TabIndex = 6;
+            this.txtNumeroQuestoes.ValidatingType = typeof(int);
             // 
             // label5
             // 
@@ -175,14 +118,73 @@
             this.label5.TabIndex = 19;
             this.label5.Text = "Numero Questoes";
             // 
-            // txtNumeroQuestoes
+            // btnConfirmar
             // 
-            this.txtNumeroQuestoes.Location = new System.Drawing.Point(442, 34);
-            this.txtNumeroQuestoes.Mask = "00000";
-            this.txtNumeroQuestoes.Name = "txtNumeroQuestoes";
-            this.txtNumeroQuestoes.Size = new System.Drawing.Size(77, 27);
-            this.txtNumeroQuestoes.TabIndex = 21;
-            this.txtNumeroQuestoes.ValidatingType = typeof(int);
+            this.btnConfirmar.Location = new System.Drawing.Point(714, 34);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(108, 38);
+            this.btnConfirmar.TabIndex = 8;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(600, 34);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(108, 38);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // txtNomeTeste
+            // 
+            this.txtNomeTeste.Location = new System.Drawing.Point(114, 34);
+            this.txtNomeTeste.Name = "txtNomeTeste";
+            this.txtNomeTeste.Size = new System.Drawing.Size(151, 27);
+            this.txtNomeTeste.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 20);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Nome Teste";
+            // 
+            // lista1
+            // 
+            this.lista1.Cursor = System.Windows.Forms.Cursors.No;
+            this.lista1.FormattingEnabled = true;
+            this.lista1.ItemHeight = 20;
+            this.lista1.Location = new System.Drawing.Point(18, 86);
+            this.lista1.Name = "lista1";
+            this.lista1.Size = new System.Drawing.Size(400, 204);
+            this.lista1.TabIndex = 99999;
+            this.lista1.TabStop = false;
+            this.lista1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lista1_MouseDoubleClick);
+            // 
+            // lista2
+            // 
+            this.lista2.FormattingEnabled = true;
+            this.lista2.ItemHeight = 20;
+            this.lista2.Location = new System.Drawing.Point(427, 86);
+            this.lista2.Name = "lista2";
+            this.lista2.Size = new System.Drawing.Size(395, 204);
+            this.lista2.TabIndex = 999;
+            this.lista2.TabStop = false;
+            this.lista2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lista2_MouseDoubleClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 20);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Materias";
             // 
             // CadastroTesteForm
             // 

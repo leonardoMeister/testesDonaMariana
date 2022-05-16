@@ -9,13 +9,15 @@ namespace TestesDonaMariana.Domain.MateriaDir
 {
     public class ValidadorMateria: AbstractValidator<Materia>
     {
-        public ValidadorMateria()
+        public ValidadorMateria(Materia materia, List<Materia> lista)
         {
             
             RuleFor(x => x.ListaBimestres)
                 .NotNull().NotEmpty();
-            RuleFor(x => x.Nome)
+            
+             RuleFor(x => x.Nome)
                 .NotNull().NotEmpty();
+
         }
     }
 }

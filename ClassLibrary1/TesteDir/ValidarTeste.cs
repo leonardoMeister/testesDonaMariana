@@ -9,7 +9,7 @@ namespace TestesDonaMariana.Domain.TesteDir
 {
     public class ValidarTeste: AbstractValidator<Teste>
     {
-        public ValidarTeste()
+        public ValidarTeste(Teste teste, List<Teste> lista)
         {
             RuleFor(x => x.ListaQuestoesDisponiveisParaProva)
                 .NotEmpty().NotNull();
@@ -23,6 +23,15 @@ namespace TestesDonaMariana.Domain.TesteDir
                 .NotEmpty().NotNull();
             RuleFor(x => x.NumeroQuestoes)
                 .NotEmpty().NotNull();
+
+            foreach (Teste item in lista)
+            {
+                if ((teste.NomeProva == item.NomeProva) && (teste._id != item._id))
+                {
+                    RuleFor(x => x.NomeProva).NotEqual(teste.NomeProva).WithMessage("Nao pode haver nomes repetidos nos Testes.");
+                }
+            }
+
         }
     }
 }

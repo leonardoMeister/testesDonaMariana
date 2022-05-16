@@ -21,6 +21,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
     public partial class CadastroDisciplinaForm : Form
     {
         ControladorMateria controladorMateria;
+        ControladorDisciplina controladorDisciplina;
         private Disciplina disciplina;
         private Materia materiaSelecionada;
         public Disciplina Disciplina
@@ -34,21 +35,22 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
                     txtNome.Text = disciplina.Nome;
                     SelecionarComboAnoLetivo();
                     AtualizarListaMaterias();
-                    }
+                }
 
             }
         }
         private void SelecionarComboAnoLetivo()
         {
-            foreach(string ano in comboAnoLetivo.Items)
+            foreach (string ano in comboAnoLetivo.Items)
             {
                 if (disciplina.AnoLetivo.ToString() == ano) comboAnoLetivo.SelectedItem = ano;
             }
         }
-        public CadastroDisciplinaForm(ControladorMateria controlMate)
+        public CadastroDisciplinaForm(ControladorMateria controlMate, ControladorDisciplina controladorDisciplina)
         {
             InitializeComponent();
             this.controladorMateria = controlMate;
+            this.controladorDisciplina = controladorDisciplina;
             EsconderMensagensErro();
             CarregarListaAnos();
         }
@@ -82,7 +84,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
 
 
 
-            var validacao = new ValidadorDisciplina().Validate(disciplina);
+            var validacao = new ValidadorDisciplina(disciplina, controladorDisciplina.SelecionarTodos()).Validate(disciplina);
 
             if (validacao.IsValid == false)
             {
@@ -97,28 +99,54 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
         }
         private void btnRemover_Click(object sender, EventArgs e)
         {
-
-            var resultadoValidacao = controladorMateria.Excluir(materiaSelecionada._id);
-
-            if (resultadoValidacao.IsValid == false)
+            if (materiaSelecionada is null)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
-                MessageBox.Show(erro);
+                MessageBox.Show("Selecione uma Materia Primeiro para Remover.");
             }
             else
             {
-                disciplina.RemoverMateria(materiaSelecionada);
+                var resultadoValidacao = controladorMateria.Excluir(materiaSelecionada._id);
+
+                if (resultadoValidacao.IsValid == false)
+                {
+                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                    MessageBox.Show(erro);
+                }
+                else
+                {
+                    disciplina.RemoverMateria(materiaSelecionada);
+                }
+                LimparCamposMateria();
+                AtualizarListaMaterias();
             }
-            LimparCamposMateria();
-            AtualizarListaMaterias();
         }
         private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            List<Materia> lista = listaMaterias.Items.Cast<Materia>().ToList();
+            if (lista.Count != 0)
+                foreach (Materia mat in lista)
+                {
+                    if (mat.Nome == txtNomeMateria.Text)
+                    {
+                        MessageBox.Show("Nao pode Adicionar Duas Materias com o mesmo nome na mesma Disciplina");
+                    }
+                    else
+                    {
+                        AdicionarMateriaNaLista();
+
+                    }
+                }
+            else AdicionarMateriaNaLista();
+        }
+
+        private void AdicionarMateriaNaLista()
         {
             if (btnAdicionar.Text == "Editar") EditarMateriaExistenta();
             else if (btnAdicionar.Text == "Adicionar") AdicionarMateriaNova();
 
             LimparCamposMateria();
         }
+
         private void EditarMateriaExistenta()
         {
             Materia mate = PegarMateria(new Materia());

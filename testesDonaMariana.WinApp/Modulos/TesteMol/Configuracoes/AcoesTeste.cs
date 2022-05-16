@@ -44,19 +44,21 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
 
             Teste testeSelecionado = controladorTeste.SelecionarPorId(id);
 
-            CadastroTesteForm tela = new CadastroTesteForm(controladorDisciplina);
+            CadastroTesteForm tela = new CadastroTesteForm(controladorDisciplina, controladorTeste);
 
-            tela.Teste = testeSelecionado;
+
+            tela.Teste = new Teste(testeSelecionado.AnoLetivo, testeSelecionado.Disciplina,testeSelecionado.ListaMaterias,testeSelecionado.NomeProva,testeSelecionado.ListaQuestoesDisponiveisParaProva,testeSelecionado.NumeroQuestoes);
+
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorTeste.Editar(id, tela.Teste);
+                controladorTeste.InserirNovo(tela.Teste);
 
                 List<EntidadeBase> testes = controladorTeste.SelecionarTodos().Cast<EntidadeBase>().ToList(); ;
 
                 tabelaTestes.AtualizarRegistros(testes);
 
-                TelaPrincipal.Instancia.AtualizarRodape($"Teste: [{tela.Teste.NomeProva}] editado com sucesso");
+                TelaPrincipal.Instancia.AtualizarRodape($"Teste: [{tela.Teste.NomeProva}] duplicado com sucesso");
             }
         }
         public void ExcluirRegistro()
@@ -90,7 +92,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
         }
         public void InserirNovoRegistro()
         {
-            CadastroTesteForm tela = new CadastroTesteForm(controladorDisciplina);
+            CadastroTesteForm tela = new CadastroTesteForm(controladorDisciplina, controladorTeste);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -111,7 +113,6 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
 
             return tabelaTestes;
         }
-
         internal void GerarPDF()
         {
             int id = tabelaTestes.ObtemIdSelecionado();

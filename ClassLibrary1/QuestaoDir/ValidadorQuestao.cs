@@ -9,7 +9,7 @@ namespace TestesDonaMariana.Domain.QuestaoDir
 {
     public class ValidadorQuestao : AbstractValidator<Questao>
     {
-        public ValidadorQuestao()
+        public ValidadorQuestao(Questao quest, List<Questao> listaQuest)
         {
             RuleFor(x => x.Titulo)
                 .NotEmpty().NotNull();
@@ -19,6 +19,15 @@ namespace TestesDonaMariana.Domain.QuestaoDir
                 .NotEmpty().NotNull();
             RuleFor(x => x.RespostaCorreta)
                 .NotEmpty().NotNull();
+
+            foreach (Questao item in listaQuest)
+            {
+                if ((quest.Titulo == item.Titulo ) && (quest._id != item._id) ) 
+                {
+                    RuleFor(x => x.Titulo).NotEqual(quest.Titulo).WithMessage("Nao pode haver nomes repetidos nas Questoes.");
+                }
+            }
+
         }
     }
 }

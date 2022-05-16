@@ -74,6 +74,13 @@ namespace testesDonaMariana.WinApp
                 operacoes.FiltrarRegistros();
             else MessageBox.Show("Selecione uma opção de janela primeiro!");
         }
+        private void btnPDF_Click(object sender, EventArgs e)
+        {
+            if ((!(operacoes is null)) && operacoes is AcoesTeste)
+                ((AcoesTeste)operacoes).GerarPDF();
+            else MessageBox.Show("Selecione uma opção de janela primeiro!");
+        }
+
         public void AtualizarRodape(string mensagem)
         {
             labelRodape.Text = mensagem;
@@ -158,12 +165,7 @@ namespace testesDonaMariana.WinApp
             else MessageBox.Show("Para poder Gerenciar Testes Adicione antes uma Disciplina e questoes!");
         }
 
-        private void btnPDF_Click(object sender, EventArgs e)
-        {
-            if ((!(operacoes is null)) && operacoes is AcoesTeste)
-                ((AcoesTeste)operacoes).GerarPDF();
-            else MessageBox.Show("Selecione uma opção de janela primeiro!");
-        }
+
 
 
     }

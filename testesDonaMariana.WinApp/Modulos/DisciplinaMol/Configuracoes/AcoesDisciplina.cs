@@ -49,7 +49,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 
             Disciplina disciplinaSelecionada = controladorDisciplina.SelecionarPorId(id);
 
-            CadastroDisciplinaForm tela = new CadastroDisciplinaForm(controladorMateria);
+            CadastroDisciplinaForm tela = new CadastroDisciplinaForm(controladorMateria,controladorDisciplina);
 
             tela.Disciplina = disciplinaSelecionada;
 
@@ -115,7 +115,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 
         public void InserirNovoRegistro()
         {
-            CadastroDisciplinaForm tela = new CadastroDisciplinaForm(controladorMateria);
+            CadastroDisciplinaForm tela = new CadastroDisciplinaForm(controladorMateria, controladorDisciplina);
 
             tela.Disciplina = new Disciplina();
             

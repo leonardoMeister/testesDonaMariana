@@ -26,9 +26,9 @@ namespace testesDonaMriana.Controlador.DisciplinaControl
             return disciplinas;
         }
 
-        public override AbstractValidator<Disciplina> ObterValidador()
+        public override AbstractValidator<Disciplina> ObterValidador(Disciplina item, List<Disciplina> lista)
         {
-            return new ValidadorDisciplina();
+            return new ValidadorDisciplina(item,lista);
         }
 
         public List<Disciplina> SelecionarDisciplinasPorAno(AnoLetivoEnum ano)
