@@ -124,7 +124,7 @@
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(108, 38);
             this.btnConfirmar.TabIndex = 8;
-            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.Text = "Gravar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 

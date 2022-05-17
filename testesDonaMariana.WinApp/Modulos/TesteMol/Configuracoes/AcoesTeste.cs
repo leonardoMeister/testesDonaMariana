@@ -132,7 +132,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
 
                     GeradorPDF geradorPdf = new GeradorPDF(pastaSelecioanda, teste);
 
-                    geradorPdf.CriarPDF();
+                    geradorPdf.CriarPDF2();
                 }
             }
         }
