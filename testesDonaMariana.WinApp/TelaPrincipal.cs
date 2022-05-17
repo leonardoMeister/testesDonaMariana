@@ -105,13 +105,9 @@ namespace testesDonaMariana.WinApp
             btnAdicionar.ToolTipText = configuracao.ToolTipAdicionar;
             btnEditar.ToolTipText = configuracao.ToolTipEditar;
             btnExcluir.ToolTipText = configuracao.ToolTipExcluir;
-            btnFiltrar.ToolTipText = configuracao.ToolTipoFiltrar;
             btnPDF.ToolTipText = configuracao.ToolTipoPdf;
             btnClonar.ToolTipText = configuracao.ToolTipoClonar;
 
-            btnFiltrar.Enabled = configuracao.FiltrarItens;
-            btnDessagrupar.Enabled = configuracao.DessagruparItens;
-            btnAgrupar.Enabled = configuracao.AgruparItens;
             btnPDF.Enabled = configuracao.GerarPdf;
             btnEditar.Enabled = configuracao.BtnEditar;
             btnClonar.Enabled = configuracao.BtnClonar;

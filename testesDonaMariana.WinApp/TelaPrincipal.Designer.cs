@@ -39,10 +39,6 @@
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
-            this.btnAgrupar = new System.Windows.Forms.ToolStripButton();
-            this.btnDessagrupar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPDF = new System.Windows.Forms.ToolStripButton();
             this.btnClonar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -116,10 +112,6 @@
             this.btnEditar,
             this.btnExcluir,
             this.toolStripSeparator1,
-            this.btnFiltrar,
-            this.btnAgrupar,
-            this.btnDessagrupar,
-            this.toolStripSeparator2,
             this.btnPDF,
             this.btnClonar,
             this.toolStripSeparator3,
@@ -170,41 +162,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 41);
-            // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFiltrar.Image = global::testesDonaMariana.WinApp.Properties.Resources.outline_filter_alt_black_24dp;
-            this.btnFiltrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnFiltrar.Size = new System.Drawing.Size(38, 38);
-            this.btnFiltrar.Text = "toolStripButton1";
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
-            // 
-            // btnAgrupar
-            // 
-            this.btnAgrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAgrupar.Image = global::testesDonaMariana.WinApp.Properties.Resources.outline_compress_black_24dp;
-            this.btnAgrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAgrupar.Name = "btnAgrupar";
-            this.btnAgrupar.Size = new System.Drawing.Size(29, 38);
-            this.btnAgrupar.Text = "toolStripButton1";
-            // 
-            // btnDessagrupar
-            // 
-            this.btnDessagrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnDessagrupar.Image = global::testesDonaMariana.WinApp.Properties.Resources.outline_expand_black_24dp;
-            this.btnDessagrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDessagrupar.Name = "btnDessagrupar";
-            this.btnDessagrupar.Size = new System.Drawing.Size(29, 38);
-            this.btnDessagrupar.Text = "toolStripButton2";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 41);
             // 
             // btnPDF
             // 
@@ -295,10 +252,6 @@
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnFiltrar;
-        private System.Windows.Forms.ToolStripButton btnAgrupar;
-        private System.Windows.Forms.ToolStripButton btnDessagrupar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
         private System.Windows.Forms.StatusStrip statusStrip1;
