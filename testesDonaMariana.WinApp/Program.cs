@@ -21,20 +21,29 @@ namespace testesDonaMariana.WinApp
 
             if (File.Exists("ContextoDadosDomain.json") == false)
             {
-                MessageBox.Show("Criando Arquivo");
+                MessageBox.Show("Criando Arquivo Serializador.");
                 File.Create("ContextoDadosDomain.json");
                 return;
             }
+            
             DataContextDadosDomain data = new DataContextDadosDomain();
             data = data.CarregarTarefasDoArquivo();
 
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TelaPrincipal(data));
+            try
+            {
+                Application.SetHighDpiMode(HighDpiMode.SystemAware);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new TelaPrincipal(data));
+            }
+            catch (Exception )
+            {
 
-            data.GravarTarefasEmArquivo(data);
-
+            }
+            finally
+            {
+                data.GravarTarefasEmArquivo(data);
+            }
         }
     }
 }
