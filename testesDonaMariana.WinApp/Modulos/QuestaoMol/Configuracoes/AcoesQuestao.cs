@@ -47,7 +47,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
             CadastroQuestaoForm tela = new CadastroQuestaoForm(controladorDisc,controladorQuestao);
 
             tela.Questao = questaoSelecionada;
-
+            
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 controladorQuestao.Editar(id, tela.Questao);

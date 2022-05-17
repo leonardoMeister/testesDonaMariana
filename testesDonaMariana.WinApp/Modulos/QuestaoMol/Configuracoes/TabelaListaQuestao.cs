@@ -30,7 +30,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
             foreach (Questao questao in questaos)
             {
                 gridQuestao.Rows.Add(questao._id, questao.Titulo, questao.RespostaCorreta,
-                    questao.Disciplina.Nome, questao.Materia.Nome);
+                    questao.Disciplina.Nome, questao.Materia.Nome, questao.Enunciado, questao.ListaAlternativas.Count);
             }
         }
 
@@ -42,7 +42,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
         public DataGridViewColumn[] ObterColunas()
         {
             var colunas = new DataGridViewColumn[]
-                                               {
+                                               { 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Titulo", HeaderText = "Titulo"},
@@ -52,6 +52,11 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
                 new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina"},
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "Materia", HeaderText = "Materia"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "Enunciado", HeaderText = "Enunciado"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "NumeroAlternativas", HeaderText = "Nº Alternativas"}
+
 
                                                };
 

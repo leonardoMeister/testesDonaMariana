@@ -26,7 +26,68 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             set
             {
                 questao = value;
+                SelecionarCamposComboBox();
+                AlimentarCampos();
+                BloquarCombos();
+                ConfigurarComboAlternativaCorreta();
             }
+        }
+
+        private void ConfigurarComboAlternativaCorreta()
+        {
+            if (listaAlternativas.Items.Count >= 3)
+                comboAlternativaCorreta.Enabled = true;
+            
+            comboAlternativaCorreta.Items.Clear();
+
+            foreach(string alternativa in listaAlternativas.Items)
+            {
+                comboAlternativaCorreta.Items.Add(alternativa);    
+            }
+            foreach(string alternativa in comboAlternativaCorreta.Items)
+            {
+                if (alternativa == questao.RespostaCorreta) comboAlternativaCorreta.SelectedItem = alternativa;
+            }
+
+        }
+
+        private void BloquarCombos()
+        {
+            comboAnoLetivo.Enabled = false;
+            comboDisciplina.Enabled = false;
+            comboMateria.Enabled = false;
+        }
+
+        private void AlimentarCampos()
+        {
+            txtTitulo.Text = questao.Titulo;
+            txtEnunciado.Text = questao.Enunciado;
+
+            foreach(string alternativa in questao.ListaAlternativas)
+            { 
+                listaAlternativas.Items.Add(alternativa);
+            }
+
+        }
+
+        private void SelecionarCamposComboBox()
+        {
+            
+            foreach(AnoLetivoEnum ano in comboAnoLetivo.Items)
+            {
+                if (questao.Disciplina.AnoLetivo == ano) comboAnoLetivo.SelectedItem = ano;
+            }
+
+            foreach(Disciplina disc in comboDisciplina.Items)
+            {
+                if (questao.Disciplina == disc) comboDisciplina.SelectedItem = disc;
+            }
+
+            foreach(Materia mat in comboMateria.Items)
+            {
+                if (questao.Materia == mat) comboMateria.SelectedItem = mat;
+            }
+
         }
 
         public CadastroQuestaoForm(ControladorDisciplina controlDisci, ControladorQuestao controladorQuestao)
@@ -96,7 +157,6 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             comboMateria.Items.Clear();
             comboMateria.Enabled = false;
             grupoQuestao.Enabled = false;
-
         }
         private void comboDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -143,7 +203,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
                 Materia mate = (Materia)comboMateria.SelectedItem;
                 Questao quest = new Questao(txtTitulo.Text, txtEnunciado.Text, listaAlternativas.Items.Cast<String>().ToList(),
                     comboAlternativaCorreta.Text, (Disciplina)comboDisciplina.SelectedItem, mate);
-
+                quest._id = questao._id;
                 var validacao = new ValidadorQuestao(quest,controladorQuestao.SelecionarTodos()).Validate(quest);
 
                 if (validacao.IsValid == false)

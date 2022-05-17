@@ -29,7 +29,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
 
             foreach (Teste teste in testes)
             {
-                gridTeste.Rows.Add(teste._id, teste.NomeProva, teste.AnoLetivo, teste.NumeroQuestoes);
+                gridTeste.Rows.Add(teste._id, teste.NomeProva, teste.AnoLetivo, teste.NumeroQuestoes, teste.ListaQuestoesDisponiveisParaProva.Count, teste.Disciplina.Nome);
             }
         }
 
@@ -49,7 +49,11 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "AnoLetivo", HeaderText = "Ano Letivo"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "NumeroQuestoes", HeaderText = "Numero Questoes"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "NumeroQuestoes", HeaderText = "Numero Questoes"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "TotalQuestoesDisponiveis", HeaderText = "Nº Total Questoes Disponiveis"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "NomeDisciplina", HeaderText = "Nome Disciplina."}
 
                                    };
 

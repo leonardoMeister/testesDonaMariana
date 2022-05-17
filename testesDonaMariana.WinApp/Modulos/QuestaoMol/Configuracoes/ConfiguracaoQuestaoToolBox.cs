@@ -29,7 +29,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
         public string ToolTipoPdf => "Gerar PDF";
 
-        public bool BtnEditar => false;
+        public bool BtnEditar => true;
 
         public string ToolTipoClonar => "";
 

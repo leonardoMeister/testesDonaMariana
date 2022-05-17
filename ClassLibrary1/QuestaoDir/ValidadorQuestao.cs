@@ -11,6 +11,7 @@ namespace TestesDonaMariana.Domain.QuestaoDir
     {
         public ValidadorQuestao(Questao quest, List<Questao> listaQuest)
         {
+
             RuleFor(x => x.Titulo)
                 .NotEmpty().NotNull();
             RuleFor(x => x.Enunciado)
