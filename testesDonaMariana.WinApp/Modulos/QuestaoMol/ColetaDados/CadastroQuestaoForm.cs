@@ -203,6 +203,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
                 Materia mate = (Materia)comboMateria.SelectedItem;
                 Questao quest = new Questao(txtTitulo.Text, txtEnunciado.Text, listaAlternativas.Items.Cast<String>().ToList(),
                     comboAlternativaCorreta.Text, (Disciplina)comboDisciplina.SelectedItem, mate);
+
                 if (! (questao is null))
                 {
                     quest._id = questao._id;

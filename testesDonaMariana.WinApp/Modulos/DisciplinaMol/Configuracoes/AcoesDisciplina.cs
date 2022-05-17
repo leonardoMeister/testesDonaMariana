@@ -10,9 +10,11 @@ using TestesDonaMariana.Domain.DisciplinaDir;
 using TestesDonaMariana.Domain.MateriaDir;
 using TestesDonaMariana.Domain.QuestaoDir;
 using TestesDonaMariana.Domain.Shared;
+using TestesDonaMariana.Domain.TesteDir;
 using testesDonaMriana.Controlador.DisciplinaControl;
 using testesDonaMriana.Controlador.MateriaControl;
 using testesDonaMriana.Controlador.QuestaoControl;
+using testesDonaMriana.Controlador.TesteControl;
 
 namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 {
@@ -21,13 +23,16 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
         ControladorDisciplina controladorDisciplina;
         ControladorQuestao controladorQuestao;
         ControladorMateria controladorMateria;
+        ControladorTeste controladorTeste;
+
 
         TabelaListaDisciplina tabelaListaDisciplina;
-        public AcoesDisciplina(ControladorDisciplina control, ControladorMateria controlMate,ControladorQuestao controlQuest)
+        public AcoesDisciplina(ControladorDisciplina control, ControladorMateria controlMate,ControladorQuestao controlQuest, ControladorTeste controlTeste)
         {
             this.controladorDisciplina = control;
             this.controladorMateria = controlMate;
             this.controladorQuestao = controlQuest;
+            this.controladorTeste = controlTeste;
             this.tabelaListaDisciplina= new TabelaListaDisciplina();
         }
 
@@ -104,8 +109,16 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
                 {
                     controladorQuestao.Excluir(quest._id);
                 }
+
+                foreach(Teste teste in controladorTeste.SelecionarTodos())
+                {
+                    if(teste.Disciplina._id == disc._id) controladorTeste.Excluir(teste._id);
+                }
+
                 controladorMateria.Existe(mat._id);
             }
+
+
         }
 
         public void FiltrarRegistros()
