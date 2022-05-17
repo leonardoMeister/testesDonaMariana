@@ -203,7 +203,11 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
                 Materia mate = (Materia)comboMateria.SelectedItem;
                 Questao quest = new Questao(txtTitulo.Text, txtEnunciado.Text, listaAlternativas.Items.Cast<String>().ToList(),
                     comboAlternativaCorreta.Text, (Disciplina)comboDisciplina.SelectedItem, mate);
-                quest._id = questao._id;
+                if (! (questao is null))
+                {
+                    quest._id = questao._id;
+                }
+                
                 var validacao = new ValidadorQuestao(quest,controladorQuestao.SelecionarTodos()).Validate(quest);
 
                 if (validacao.IsValid == false)
