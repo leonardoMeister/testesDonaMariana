@@ -11,6 +11,7 @@ using testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes;
 using testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes;
 using testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes;
 using testesDonaMariana.WinApp.Shared;
+using TestesDonaMariana.Serializador.Shared;
 using testesDonaMriana.Controlador.DisciplinaControl;
 using testesDonaMriana.Controlador.MateriaControl;
 using testesDonaMriana.Controlador.QuestaoControl;
@@ -30,15 +31,16 @@ namespace testesDonaMariana.WinApp
 
         public static TelaPrincipal Instancia;
 
-        public TelaPrincipal()
+        public TelaPrincipal(DataContextDadosDomain data)
         {
             InitializeComponent();
-            this.controladorDisciplina = new ControladorDisciplina();
-            this.controladorMateria = new ControladorMateria();
-            this.controladorQuestao = new ControladorQuestao();
-            this.controladorTeste = new ControladorTeste();
 
-            PopularAplicativo.Popularaplicativo(controladorMateria, controladorDisciplina, controladorQuestao, controladorTeste);
+
+            this.controladorDisciplina = new ControladorDisciplina(data.ListaDisciplina);
+            this.controladorMateria = new ControladorMateria(data.ListaMate);
+            this.controladorQuestao = new ControladorQuestao(data.ListaQuestao);
+            this.controladorTeste = new ControladorTeste(data.ListaTeste);
+
 
             Instancia = this;
         }
