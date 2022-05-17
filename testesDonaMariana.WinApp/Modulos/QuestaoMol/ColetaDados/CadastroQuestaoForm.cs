@@ -20,6 +20,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
         private Questao questao;
         ControladorDisciplina controlDisciplina;
         ControladorQuestao controladorQuestao;
+        string alternativaCorretaSelecionada = "";
         public Questao Questao
         {
             get { return questao; }
@@ -192,6 +193,12 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             {
                 comboAlternativaCorreta.Items.Add(aux);
             }
+            foreach(string item in comboAlternativaCorreta.Items)
+            {
+                if (item == alternativaCorretaSelecionada) comboAlternativaCorreta.SelectedItem = item;
+            }
+
+
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -225,6 +232,14 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
 
                     this.DialogResult = DialogResult.OK;
                 }
+            }
+        }
+
+        private void comboAlternativaCorreta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboAlternativaCorreta.SelectedItem.ToString() != "" || comboAlternativaCorreta.SelectedItem.ToString() != null)
+            {
+                alternativaCorretaSelecionada = comboAlternativaCorreta.SelectedItem.ToString();
             }
         }
     }

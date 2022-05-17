@@ -182,6 +182,7 @@
             this.comboAlternativaCorreta.Name = "comboAlternativaCorreta";
             this.comboAlternativaCorreta.Size = new System.Drawing.Size(327, 28);
             this.comboAlternativaCorreta.TabIndex = 11;
+            this.comboAlternativaCorreta.SelectedIndexChanged += new System.EventHandler(this.comboAlternativaCorreta_SelectedIndexChanged);
             // 
             // listaAlternativas
             // 
