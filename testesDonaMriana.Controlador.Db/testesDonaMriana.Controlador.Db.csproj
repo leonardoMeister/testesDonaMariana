@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\TestesDonaMariana.Domain.csproj" />
+    <ProjectReference Include="..\TestesDonaMariana.DataBase\TestesDonaMariana.DataBase.csproj" />
+  </ItemGroup>
+
+</Project>
