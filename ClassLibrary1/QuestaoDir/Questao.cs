@@ -12,24 +12,20 @@ namespace TestesDonaMariana.Domain.QuestaoDir
     public class Questao : EntidadeBase
     {
 
-        string _titulo;
         string _enunciado;
         List<string> _listaAlternativas;
         string _respostaCorreta;
         Disciplina _disciplina;
         Materia materia;
 
-        public Questao(string titulo, string enunciado, List<string> listaAlternativas, string respostaCorreta, Disciplina dis,Materia mate)
+        public Questao(string enunciado, List<string> listaAlternativas, string respostaCorreta, Disciplina dis, Materia mate)
         {
-            _titulo = titulo;
             _enunciado = enunciado;
             _listaAlternativas = listaAlternativas;
             _respostaCorreta = respostaCorreta;
             _disciplina = dis;
             Materia = mate;
         }
-
-        public string Titulo { get => _titulo; set => _titulo = value; }
         public string Enunciado { get => _enunciado; set => _enunciado = value; }
         public List<string> ListaAlternativas { get => _listaAlternativas; set => _listaAlternativas = value; }
         public string RespostaCorreta { get => _respostaCorreta; set => _respostaCorreta = value; }

@@ -46,8 +46,6 @@
             this.txtDescricaoAlternativa = new System.Windows.Forms.TextBox();
             this.txtEnunciado = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtTitulo = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.grupoQuestao.SuspendLayout();
             this.grupoAlternativa.SuspendLayout();
             this.SuspendLayout();
@@ -118,13 +116,11 @@
             this.grupoQuestao.Controls.Add(this.grupoAlternativa);
             this.grupoQuestao.Controls.Add(this.txtEnunciado);
             this.grupoQuestao.Controls.Add(this.label5);
-            this.grupoQuestao.Controls.Add(this.txtTitulo);
-            this.grupoQuestao.Controls.Add(this.label4);
             this.grupoQuestao.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grupoQuestao.Enabled = false;
-            this.grupoQuestao.Location = new System.Drawing.Point(0, 128);
+            this.grupoQuestao.Location = new System.Drawing.Point(0, 129);
             this.grupoQuestao.Name = "grupoQuestao";
-            this.grupoQuestao.Size = new System.Drawing.Size(828, 495);
+            this.grupoQuestao.Size = new System.Drawing.Size(828, 450);
             this.grupoQuestao.TabIndex = 4;
             this.grupoQuestao.TabStop = false;
             this.grupoQuestao.Text = "Dados Questão";
@@ -132,7 +128,7 @@
             // btnExcluir
             // 
             this.btnExcluir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExcluir.Location = new System.Drawing.Point(514, 438);
+            this.btnExcluir.Location = new System.Drawing.Point(517, 386);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(134, 45);
             this.btnExcluir.TabIndex = 12;
@@ -141,7 +137,7 @@
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(666, 438);
+            this.btnAdicionar.Location = new System.Drawing.Point(669, 386);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(134, 45);
             this.btnAdicionar.TabIndex = 13;
@@ -157,7 +153,7 @@
             this.grupoAlternativa.Controls.Add(this.label7);
             this.grupoAlternativa.Controls.Add(this.button1);
             this.grupoAlternativa.Controls.Add(this.txtDescricaoAlternativa);
-            this.grupoAlternativa.Location = new System.Drawing.Point(12, 162);
+            this.grupoAlternativa.Location = new System.Drawing.Point(15, 110);
             this.grupoAlternativa.Name = "grupoAlternativa";
             this.grupoAlternativa.Size = new System.Drawing.Size(804, 261);
             this.grupoAlternativa.TabIndex = 11;
@@ -223,7 +219,7 @@
             // 
             // txtEnunciado
             // 
-            this.txtEnunciado.Location = new System.Drawing.Point(101, 78);
+            this.txtEnunciado.Location = new System.Drawing.Point(104, 26);
             this.txtEnunciado.Multiline = true;
             this.txtEnunciado.Name = "txtEnunciado";
             this.txtEnunciado.Size = new System.Drawing.Size(644, 78);
@@ -232,33 +228,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 81);
+            this.label5.Location = new System.Drawing.Point(9, 29);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 20);
             this.label5.TabIndex = 2;
             this.label5.Text = "Enunciado";
             // 
-            // txtTitulo
-            // 
-            this.txtTitulo.Location = new System.Drawing.Point(101, 36);
-            this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(644, 27);
-            this.txtTitulo.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 39);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Titulo";
-            // 
             // CadastroQuestaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 623);
+            this.ClientSize = new System.Drawing.Size(828, 579);
             this.Controls.Add(this.grupoQuestao);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboMateria);
@@ -300,8 +280,6 @@
         private System.Windows.Forms.TextBox txtDescricaoAlternativa;
         private System.Windows.Forms.TextBox txtEnunciado;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtTitulo;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboAlternativaCorreta;
     }

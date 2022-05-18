@@ -61,7 +61,6 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
 
         private void AlimentarCampos()
         {
-            txtTitulo.Text = questao.Titulo;
             txtEnunciado.Text = questao.Enunciado;
 
             foreach(string alternativa in questao.ListaAlternativas)
@@ -208,7 +207,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             else
             {
                 Materia mate = (Materia)comboMateria.SelectedItem;
-                Questao quest = new Questao(txtTitulo.Text, txtEnunciado.Text, listaAlternativas.Items.Cast<String>().ToList(),
+                Questao quest = new Questao( txtEnunciado.Text, listaAlternativas.Items.Cast<String>().ToList(),
                     comboAlternativaCorreta.Text, (Disciplina)comboDisciplina.SelectedItem, mate);
 
                 if (! (questao is null))

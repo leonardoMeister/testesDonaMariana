@@ -56,7 +56,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
-                TelaPrincipal.Instancia.AtualizarRodape($"Questão: [{tela.Questao.Titulo}] editada com sucesso");
+                TelaPrincipal.Instancia.AtualizarRodape($"Questão: [{tela.Questao.Enunciado}] editada com sucesso");
             }
         }
 
@@ -73,7 +73,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
             Questao questaoSelecionada = controladorQuestao.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir a Questão: [{questaoSelecionada.Titulo}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir a Questão: [{questaoSelecionada.Enunciado}] ?",
                 "Exclusão de Questões", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 controladorQuestao.Excluir(id);
@@ -82,7 +82,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
-                TelaPrincipal.Instancia.AtualizarRodape($"questão: [{questaoSelecionada.Titulo}] removida com sucesso");
+                TelaPrincipal.Instancia.AtualizarRodape($"Questão: [{questaoSelecionada.Enunciado}] removida com sucesso");
             }
         }
 
@@ -103,7 +103,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
-                TelaPrincipal.Instancia.AtualizarRodape($"Questao: [{tela.Questao.Titulo}] inserida com sucesso");
+                TelaPrincipal.Instancia.AtualizarRodape($"Questao: [{tela.Questao.Enunciado}] inserida com sucesso");
             }
         }
 

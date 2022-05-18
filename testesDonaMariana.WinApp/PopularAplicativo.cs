@@ -36,13 +36,13 @@ namespace testesDonaMariana.WinApp
 
             List<string> listaAlternativas = new List<string> { "Alternativa 1","Alternativa 2","Alternativa 3"};
 
-            Questao quest = new Questao("Nome de questao","Enunciadode Questao",listaAlternativas,"Alternativa 2",disc1, mat1);
-            Questao quest2 = new Questao("Nome de questao2", "Enunciadode Questao2", listaAlternativas, "Alternativa 3", disc1, mat1);
-            Questao quest3 = new Questao("Nome de questao3", "Enunciadode Questao3", listaAlternativas, "Alternativa 1", disc1, mat1);
-            Questao quest4 = new Questao("Nome de questao4", "Enunciadode Questao4", listaAlternativas, "Alternativa 2", disc1, mat1);
-            Questao quest5 = new Questao("Nome de questao5", "Enunciadode Questao5", listaAlternativas, "Alternativa 3", disc1, mat1);
-            Questao quest6 = new Questao("Nome de questao6", "Enunciadode Questao6", listaAlternativas, "Alternativa 2", disc1, mat1);
-            Questao quest7 = new Questao("Nome de questao7", "Enunciadode Questao7", listaAlternativas, "Alternativa 1", disc1, mat1);
+            Questao quest = new Questao("Enunciadode Questao",listaAlternativas,"Alternativa 2",disc1, mat1);
+            Questao quest2 = new Questao("Enunciadode Questao2", listaAlternativas, "Alternativa 3", disc1, mat1);
+            Questao quest3 = new Questao("Enunciadode Questao3", listaAlternativas, "Alternativa 1", disc1, mat1);
+            Questao quest4 = new Questao("Enunciadode Questao4", listaAlternativas, "Alternativa 2", disc1, mat1);
+            Questao quest5 = new Questao("Enunciadode Questao5", listaAlternativas, "Alternativa 3", disc1, mat1);
+            Questao quest6 = new Questao("Enunciadode Questao6", listaAlternativas, "Alternativa 2", disc1, mat1);
+            Questao quest7 = new Questao("Enunciadode Questao7", listaAlternativas, "Alternativa 1", disc1, mat1);
 
             controlquestao.InserirNovo(quest);
             controlquestao.InserirNovo(quest2);
