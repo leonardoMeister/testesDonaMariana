@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestesDonaMariana.Domain.Shared
+namespace eAgenda.Dominio.Shared
 {
     public abstract class EntidadeBase
     {

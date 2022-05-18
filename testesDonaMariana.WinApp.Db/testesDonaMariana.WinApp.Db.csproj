@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\TestesDonaMariana.Domain.csproj" />
     <ProjectReference Include="..\TestesDonaMariana.Serializador\TestesDonaMariana.Serializador.csproj" />
     <ProjectReference Include="..\testesDonaMriana.Controlador.Db\testesDonaMriana.Controlador.Db.csproj" />
   </ItemGroup>

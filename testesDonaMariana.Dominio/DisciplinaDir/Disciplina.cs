@@ -1,28 +1,47 @@
-﻿using eAgenda.Dominio.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using testesDonaMariana.Dominio.MateriaDir;
+using TestesDonaMariana.Domain.MateriaDir;
+using TestesDonaMariana.Domain.QuestaoDir;
+using TestesDonaMariana.Domain.Shared;
 
-namespace testesDonaMariana.Dominio.DisciplinaDir
+namespace TestesDonaMariana.Domain.DisciplinaDir
 {
     public class Disciplina : EntidadeBase
     {
 
-        List<Materia> listaMaterias;
-        string anoLetivo;
-
-
+        List<Materia> _listaMaterias;
+        AnoLetivoEnum _anoLetivo;
+        string _nome;
         public Disciplina()
         {
-            listaMaterias = new List<Materia>();    
+            _listaMaterias = new List<Materia>();
+        }
+        public Disciplina(List<Materia> listaMaterias, AnoLetivoEnum ano, string nome)
+        {
+            this.ListaMaterias = listaMaterias;
+            this._anoLetivo = ano;
+            this._nome = nome;
         }
 
-        public Disciplina(List<Materia> listaMaterias)
+        public void AdicionarMateria(Materia mat)
         {
-            this.listaMaterias = listaMaterias;
+            ListaMaterias.Add(mat);
+        }
+        public void RemoverMateria(Materia mat)
+        {
+            ListaMaterias.Remove(mat);
+        }
+
+        public List<Materia> ListaMaterias { get => _listaMaterias; set => _listaMaterias = value; }
+        public string Nome { get => _nome; set => _nome = value; }
+        public AnoLetivoEnum AnoLetivo { get => _anoLetivo; set => _anoLetivo = value; }
+
+        public override string ToString()
+        {
+            return $"Id: {_id}, Nome: {Nome}, Ano Letivo: {_anoLetivo}";
         }
 
         public override string Validar()
