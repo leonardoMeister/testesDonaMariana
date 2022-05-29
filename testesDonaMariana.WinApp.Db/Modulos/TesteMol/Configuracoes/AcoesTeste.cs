@@ -42,9 +42,9 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
                 return;
             }
 
-            Teste testeSelecionado = controladorTeste.SelecionarPorId(id);
+            Teste testeSelecionado = controladorTeste.SelecionarTesteComReferenciaPorID(id);
 
-            CadastroTesteForm tela = new CadastroTesteForm(controladorDisciplina, controladorTeste);
+            CadastroTesteForm tela = new CadastroTesteForm();
 
 
             tela.Teste = new Teste(testeSelecionado.AnoLetivo, testeSelecionado.Disciplina,testeSelecionado.ListaMaterias,testeSelecionado.NomeProva,testeSelecionado.ListaQuestoesDisponiveisParaProva,testeSelecionado.NumeroQuestoes);
@@ -52,9 +52,10 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorTeste.InserirNovo(tela.Teste);
 
-                List<EntidadeBase> testes = controladorTeste.SelecionarTodos().Cast<EntidadeBase>().ToList(); ;
+                controladorTeste.InserirNovoTeste(tela.Teste);
+
+                List<EntidadeBase> testes = controladorTeste.SelecionarTodosComReferencia().Cast<EntidadeBase>().ToList(); ;
 
                 tabelaTestes.AtualizarRegistros(testes);
 
@@ -72,14 +73,14 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
                 return;
             }
 
-            Teste testeSelecionada = controladorTeste.SelecionarPorId(id);
+            Teste testeSelecionada = controladorTeste.SelecionarTesteComReferenciaPorID(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Teste: [{testeSelecionada.NomeProva}] ?",
                 "Exclusão de Testes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controladorTeste.Excluir(id);
+                controladorTeste.ExcluirTestePorTesteID(id);
 
-                List<EntidadeBase> testes = controladorTeste.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                List<EntidadeBase> testes = controladorTeste.SelecionarTodosComReferencia().Cast<EntidadeBase>().ToList();
 
                 tabelaTestes.AtualizarRegistros(testes);
 
@@ -92,13 +93,13 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
         }
         public void InserirNovoRegistro()
         {
-            CadastroTesteForm tela = new CadastroTesteForm(controladorDisciplina, controladorTeste);
+            CadastroTesteForm tela = new CadastroTesteForm();
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorTeste.InserirNovo(tela.Teste);
+                controladorTeste.InserirNovoTeste(tela.Teste);
 
-                List<EntidadeBase> tarefas = controladorTeste.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                List<EntidadeBase> tarefas = controladorTeste.SelecionarTodosComReferencia().Cast<EntidadeBase>().ToList();
 
                 tabelaTestes.AtualizarRegistros(tarefas);
 
@@ -107,7 +108,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
         }
         public UserControl ObterTabela()
         {
-            List<EntidadeBase> testes = controladorTeste.SelecionarTodos().Cast<EntidadeBase>().ToList();
+            List<EntidadeBase> testes = controladorTeste.SelecionarTodosComReferencia().Cast<EntidadeBase>().ToList();
 
             tabelaTestes.AtualizarRegistros(testes);
 
@@ -116,7 +117,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.Configuracoes
         internal void GerarPDF()
         {
             int id = tabelaTestes.ObtemIdSelecionado();
-            Teste teste = controladorTeste.SelecionarPorId(id);
+            Teste teste = controladorTeste.SelecionarTesteComReferenciaPorID(id);
 
             if (teste == null)
             {

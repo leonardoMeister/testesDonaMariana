@@ -8,6 +8,7 @@ using testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados;
 using testesDonaMariana.WinApp.Shared;
 using TestesDonaMariana.Domain.QuestaoDir;
 using TestesDonaMariana.Domain.Shared;
+using testesDonaMriana.Controlador.Db.QuestaoControl;
 using testesDonaMriana.Controlador.DisciplinaControl;
 using testesDonaMriana.Controlador.QuestaoControl;
 
@@ -42,9 +43,10 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
                 return;
             }
 
-            Questao questaoSelecionada = controladorQuestao.SelecionarPorId(id);
-
-            CadastroQuestaoForm tela = new CadastroQuestaoForm(controladorDisc,controladorQuestao);
+            Questao questaoSelecionada = new ControladorDisciplina().SelecionarQuestaoComReferenciaPorId(id);
+            
+            
+            CadastroQuestaoForm tela = new CadastroQuestaoForm();
 
             tela.Questao = questaoSelecionada;
             
@@ -52,7 +54,13 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
             {
                 controladorQuestao.Editar(id, tela.Questao);
 
-                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodos().Cast<EntidadeBase>().ToList(); ;
+                new ControladorAlternativa().Excluir(id);
+                foreach (Alternativa alt in tela.Questao.ListaAlternativas)
+                {
+                    new ControladorAlternativa().InserirNovo(alt);
+                }
+
+                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodasQuestoesComReferencia().Cast<EntidadeBase>().ToList();
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
@@ -71,18 +79,19 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
                 return;
             }
 
-            Questao questaoSelecionada = controladorQuestao.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir a Questão: [{questaoSelecionada.Enunciado}] ?",
+
+            if (MessageBox.Show($"Tem certeza que deseja excluir a Questão?",
                 "Exclusão de Questões", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
+                new ControladorAlternativa().Excluir(id);
                 controladorQuestao.Excluir(id);
 
-                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodasQuestoesComReferencia().Cast<EntidadeBase>().ToList();
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 
-                TelaPrincipal.Instancia.AtualizarRodape($"Questão: [{questaoSelecionada.Enunciado}] removida com sucesso");
+                TelaPrincipal.Instancia.AtualizarRodape($"Questão removida com sucesso");
             }
         }
 
@@ -93,13 +102,21 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
 
         public void InserirNovoRegistro()
         {
-            CadastroQuestaoForm tela = new CadastroQuestaoForm(controladorDisc,controladorQuestao);
-
+            CadastroQuestaoForm tela = new CadastroQuestaoForm( );
+            //tela.Questao = new Questao();
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 controladorQuestao.InserirNovo(tela.Questao);
 
-                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                ControladorAlternativa controladorAlternativa = new ControladorAlternativa();
+
+                foreach(Alternativa alt in tela.Questao.ListaAlternativas)
+                {
+                    alt.Quest = tela.Questao;
+                    controladorAlternativa.InserirNovo(alt);
+                }
+
+                List<EntidadeBase> questoes = controladorQuestao.SelecionarTodasQuestoesComReferencia().Cast<EntidadeBase>().ToList();
 
                 tabelaQuestao.AtualizarRegistros(questoes);
 

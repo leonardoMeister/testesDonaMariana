@@ -80,7 +80,7 @@ namespace TestesDonaMariana.Domain.TesteDir
             informacoesProva.Add(new Chunk(glue));
             informacoesProva.Add($"Matéria(s): ");
             foreach (Materia mate in Teste.ListaMaterias)
-            {
+            { 
                 informacoesProva.Add($" {mate.Nome}");
             }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             

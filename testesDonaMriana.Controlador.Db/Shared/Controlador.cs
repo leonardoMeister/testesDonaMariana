@@ -12,12 +12,12 @@ namespace eAgenda.Controladores.Shared
 {
     public abstract class Controlador<T> where T : EntidadeBase
     {
-        public abstract string SqlUpdate { get; }
-        public abstract string SqlDelete { get; }
-        public abstract string SqlInsert { get; }
-        public abstract string SqlSelectAll { get; }
-        public abstract string SqlSelectId { get; }
-        public abstract string SqlExiste { get; }
+        protected abstract string SqlUpdate { get; }
+        protected abstract string SqlDelete { get; }
+        protected abstract string SqlInsert { get; }
+        protected abstract string SqlSelectAll { get; }
+        protected abstract string SqlSelectId { get; }
+        protected abstract string SqlExiste { get; }
         
         public abstract AbstractValidator<T> ObterValidador(T item, List<T> lista);
         public abstract T ConverterEmRegistro(IDataReader dataReader);      
@@ -34,8 +34,8 @@ namespace eAgenda.Controladores.Shared
 
             if (resultadoValidacao.IsValid)
             {
-                int id = Db.Insert(SqlInsert, ObtemParametrosRegistro(registro));
-
+                int id = DataBase.Insert(SqlInsert, ObtemParametrosRegistro(registro));
+                registro._id = id;
             }
             return resultadoValidacao;
         }
@@ -48,20 +48,20 @@ namespace eAgenda.Controladores.Shared
             if (resultadoValidacao.IsValid)
             {
                 registro._id = id;
-                Db.Update(SqlUpdate, ObtemParametrosRegistro(registro));
+                DataBase.Update(SqlUpdate, ObtemParametrosRegistro(registro));
             }
             return resultadoValidacao;
         }
         public virtual bool Existe(int id)
         {
-            return Db.Exists(SqlExiste, AdicionarParametro("ID", id));
+            return DataBase.Exists(SqlExiste, AdicionarParametro("ID", id));
         }
         public virtual ValidationResult Excluir(int id)
         { 
             var resultadoValidacao = new ValidationResult();
             try
             {
-                Db.Delete(SqlDelete, AdicionarParametro("ID", id));
+                DataBase.Delete(SqlDelete, AdicionarParametro("ID", id));
             }
             catch (Exception)
             {
@@ -73,11 +73,11 @@ namespace eAgenda.Controladores.Shared
         }
         public virtual List<T> SelecionarTodos()
         {
-            return Db.GetAll(SqlSelectAll, ConverterEmRegistro );
+            return DataBase.GetAll(SqlSelectAll, ConverterEmRegistro );
         }
         public virtual T SelecionarPorId(int id)
         {
-            return Db.Get(SqlSelectId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            return DataBase.Get(SqlSelectId, ConverterEmRegistro, AdicionarParametro("ID", id));
         }
 
     }

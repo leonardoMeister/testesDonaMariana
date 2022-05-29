@@ -23,11 +23,11 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.ColetaDados
         private ControladorDisciplina controladorDisciplina;
         private ControladorTeste controladorTeste;
 
-        public CadastroTesteForm(ControladorDisciplina controlDisci, ControladorTeste controladorTeste)
+        public CadastroTesteForm()
         {
             InitializeComponent();
-            this.controladorDisciplina = controlDisci;
-            this.controladorTeste = controladorTeste;
+            this.controladorDisciplina = new ControladorDisciplina();
+            this.controladorTeste = new ControladorTeste();
             CarregarAnosLetivos();
             grupoTeste.Enabled = false;
             lista1.Enabled = true;
@@ -72,7 +72,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.ColetaDados
         {
             foreach (Disciplina disci in comboDisciplina.Items)
             {
-                if (disci == teste.Disciplina) comboDisciplina.SelectedItem = disci;
+                if (disci._id == teste.Disciplina._id) comboDisciplina.SelectedItem = disci;
             }
         }
 
@@ -193,7 +193,7 @@ namespace testesDonaMariana.WinApp.Modulos.TesteMol.ColetaDados
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            AnoLetivoEnum ano = (AnoLetivoEnum)comboAnoLetivo.SelectedItem ;
+            AnoLetivoEnum ano = (AnoLetivoEnum)comboAnoLetivo.SelectedItem;
             Disciplina disciplina= (Disciplina) comboDisciplina.SelectedItem;
             List<Materia> listaMaterias = lista2.Items.Cast<Materia>().ToList();
             List<Questao> listaQuestaos = PegarListaQuestoes(listaMaterias);

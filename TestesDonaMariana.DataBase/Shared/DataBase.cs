@@ -5,35 +5,37 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace TestesDonaMariana.DataBase.Shared
 {
     public delegate T ConverterDelegate<T>(IDataReader reader);
-    public static class Db
+    public static class DataBase
     {
-        private static readonly string bancoDeDados;
         private static readonly string connectionString;
         private static readonly string nomeProvider;
-        private static readonly DbProviderFactory fabricaProvedor;
+        private static readonly SqlConnection conection;
 
-        static Db()
+        static DataBase()
         {
-            bancoDeDados = "SqlServer";
-
-            connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=DBeAgenda;Integrated Security=True;Pooling=False";
+            connectionString = @"Data Source=(LocalDB)\MSSqlLocalDB;
+                                Initial Catalog=TestesDonaMarianaDB;
+                                Integrated Security=True;
+                                Pooling=False";
 
             nomeProvider = "System.Data.SqlClient";
 
-            fabricaProvedor = DbProviderFactories.GetFactory(nomeProvider);
+            conection = new SqlConnection(connectionString);
         }
 
         public static int Insert(string sql, Dictionary<string, object> parameters)
         {
-            using (IDbConnection connection = fabricaProvedor.CreateConnection())
+            using (IDbConnection connection = conection)
             {
                 connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = fabricaProvedor.CreateCommand())
+                using (IDbCommand command = conection.CreateCommand())
                 {
                     command.CommandText = sql.AppendSelectIdentity();
                     command.Connection = connection;
@@ -50,11 +52,11 @@ namespace TestesDonaMariana.DataBase.Shared
 
         public static void Update(string sql, Dictionary<string, object> parameters = null)
         {
-            using (IDbConnection connection = fabricaProvedor.CreateConnection())
+            using (IDbConnection connection = conection)
             {
                 connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = fabricaProvedor.CreateCommand())
+                using (IDbCommand command = conection.CreateCommand())
                 {
                     command.CommandText = sql;
 
@@ -76,11 +78,11 @@ namespace TestesDonaMariana.DataBase.Shared
 
         public static List<T> GetAll<T>(string sql, ConverterDelegate<T> convert, Dictionary<string, object> parameters = null)
         {
-            using (IDbConnection connection = fabricaProvedor.CreateConnection())
+            using (IDbConnection connection = conection)
             {
                 connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = fabricaProvedor.CreateCommand())
+                using (IDbCommand command = conection.CreateCommand())
                 {
                     command.CommandText = sql;
 
@@ -106,13 +108,14 @@ namespace TestesDonaMariana.DataBase.Shared
             }
         }
 
+
         public static T Get<T>(string sql, ConverterDelegate<T> convert, Dictionary<string, object> parameters)
         {
-            using (IDbConnection connection = fabricaProvedor.CreateConnection())
+            using (IDbConnection connection = conection)
             {
                 connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = fabricaProvedor.CreateCommand())
+                using (IDbCommand command = conection.CreateCommand())
                 {
                     command.CommandText = sql;
 
@@ -136,13 +139,32 @@ namespace TestesDonaMariana.DataBase.Shared
             }
         }
 
-        public static bool Exists(string sql, Dictionary<string, object> parameters)
+        public static void InsertNoReturn(string sql, Dictionary<string, object> parameters)
         {
-            using (IDbConnection connection = fabricaProvedor.CreateConnection())
+            using (IDbConnection connection = conection)
             {
                 connection.ConnectionString = connectionString;
 
-                using (IDbCommand command = fabricaProvedor.CreateCommand())
+                using (IDbCommand command = conection.CreateCommand())
+                {
+                    command.CommandText = sql;
+                    command.Connection = connection;
+                    command.SetParameters(parameters);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    
+                }
+            }
+        }
+
+        public static bool Exists(string sql, Dictionary<string, object> parameters)
+        {
+            using (IDbConnection connection = conection)
+            {
+                connection.ConnectionString = connectionString;
+
+                using (IDbCommand command = conection.CreateCommand())
                 {
                     command.CommandText = sql;
 

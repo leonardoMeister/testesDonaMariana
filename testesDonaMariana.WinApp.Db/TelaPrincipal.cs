@@ -121,7 +121,7 @@ namespace testesDonaMariana.WinApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new AcoesDisciplina(controladorDisciplina, controladorMateria, controladorQuestao, controladorTeste);
+            operacoes = new AcoesDisciplina();
 
             ConfigurarPainelRegistros();
         }

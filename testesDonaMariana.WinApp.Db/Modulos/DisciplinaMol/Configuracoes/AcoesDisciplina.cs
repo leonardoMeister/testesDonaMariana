@@ -11,6 +11,7 @@ using TestesDonaMariana.Domain.MateriaDir;
 using TestesDonaMariana.Domain.QuestaoDir;
 using TestesDonaMariana.Domain.Shared;
 using TestesDonaMariana.Domain.TesteDir;
+using testesDonaMriana.Controlador.Db.QuestaoControl;
 using testesDonaMriana.Controlador.DisciplinaControl;
 using testesDonaMriana.Controlador.MateriaControl;
 using testesDonaMriana.Controlador.QuestaoControl;
@@ -27,13 +28,13 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 
 
         TabelaListaDisciplina tabelaListaDisciplina;
-        public AcoesDisciplina(ControladorDisciplina control, ControladorMateria controlMate,ControladorQuestao controlQuest, ControladorTeste controlTeste)
+        public AcoesDisciplina()
         {
-            this.controladorDisciplina = control;
-            this.controladorMateria = controlMate;
-            this.controladorQuestao = controlQuest;
-            this.controladorTeste = controlTeste;
-            this.tabelaListaDisciplina= new TabelaListaDisciplina();
+            this.controladorDisciplina = new ControladorDisciplina();
+            this.controladorMateria = new ControladorMateria();
+            this.controladorQuestao = new ControladorQuestao();
+            this.controladorTeste = new ControladorTeste();
+            this.tabelaListaDisciplina = new TabelaListaDisciplina();
         }
 
         public void AgruparRegistros()
@@ -52,9 +53,9 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
                 return;
             }
 
-            Disciplina disciplinaSelecionada = controladorDisciplina.SelecionarPorId(id);
+            Disciplina disciplinaSelecionada = controladorDisciplina.SelecionarDisciplinaComReferenciaPorId(id);
 
-            CadastroDisciplinaForm tela = new CadastroDisciplinaForm(controladorMateria,controladorDisciplina);
+            CadastroDisciplinaForm tela = new CadastroDisciplinaForm();
 
             tela.Disciplina = disciplinaSelecionada;
 
@@ -62,7 +63,12 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
             {
                 controladorDisciplina.Editar(id, tela.Disciplina);
 
-                List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodos().Cast<EntidadeBase>().ToList(); ;
+                foreach (Materia mate in tela.Disciplina.ListaMaterias)
+                {
+                    controladorMateria.AtualizarMateria(mate);
+                }
+
+                List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodasDisciplinasComMateriaEQuestao().Cast<EntidadeBase>().ToList();
 
                 tabelaListaDisciplina.AtualizarRegistros(disciplinas);
 
@@ -81,19 +87,18 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
                 return;
             }
 
-            Disciplina disciplinaSelecionada = controladorDisciplina.SelecionarPorId(id);
+            Disciplina disciplinaSelecionada = controladorDisciplina.SelecionarDisciplinaComReferenciaPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir a Disciplina: [{disciplinaSelecionada.Nome}] ?",
                 "Exclusão de Disciplinas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
 
-                Disciplina disc = controladorDisciplina.SelecionarPorId(id);
 
-                RemoverTodosOsItensComReferencia(disc);
+                RemoverTodosOsItensComReferencia(disciplinaSelecionada);
 
                 controladorDisciplina.Excluir(id);
 
-                List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodasDisciplinasComMateriaEQuestao().Cast<EntidadeBase>().ToList();
 
                 tabelaListaDisciplina.AtualizarRegistros(disciplinas);
 
@@ -103,20 +108,18 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 
         private void RemoverTodosOsItensComReferencia(Disciplina disc)
         {
-            foreach(Materia mat in disc.ListaMaterias)
+            controladorTeste.ExcluirTodosTestesDeDisciplina(disc._id);
+            foreach (Materia mat in disc.ListaMaterias)
             {
-                foreach(Questao quest in mat.ListaQuestoes)
+                foreach (Questao quest in mat.ListaQuestoes)
                 {
-                    controladorQuestao.Excluir(quest._id);
-                }
-
-                foreach(Teste teste in controladorTeste.SelecionarTodos())
-                {
-                    if(teste.Disciplina._id == disc._id) controladorTeste.Excluir(teste._id);
-                }
-
-                controladorMateria.Existe(mat._id);
+                    new ControladorAlternativa().Excluir(quest._id);                    
+                }               
+                controladorMateria.RemoverReferenciaBimestresMateria(mat._id);
+                controladorQuestao.ExcluirQuestoesPorMateriaId(mat._id);
             }
+                       
+            controladorMateria.ExcluirMateriasPorDisciplina(disc._id);
 
 
         }
@@ -128,16 +131,21 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 
         public void InserirNovoRegistro()
         {
-            CadastroDisciplinaForm tela = new CadastroDisciplinaForm(controladorMateria, controladorDisciplina);
+            CadastroDisciplinaForm tela = new CadastroDisciplinaForm();
 
             tela.Disciplina = new Disciplina();
-            
+
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 controladorDisciplina.InserirNovo(tela.Disciplina);
 
-                List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodos().Cast<EntidadeBase>().ToList();
+                foreach (Materia mate in tela.Disciplina.ListaMaterias)
+                {
+                    controladorMateria.InserirNovaMateriaComBimestre(mate);
+                }
+
+                List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodasDisciplinasComMateriaEQuestao().Cast<EntidadeBase>().ToList();
 
                 tabelaListaDisciplina.AtualizarRegistros(disciplinas);
 
@@ -147,9 +155,9 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.Configuracoes
 
         public UserControl ObterTabela()
         {
-            List<EntidadeBase> compromissos = controladorDisciplina.SelecionarTodos().Cast<EntidadeBase>().ToList();
+            List<EntidadeBase> disciplinas = controladorDisciplina.SelecionarTodasDisciplinasComMateriaEQuestao().Cast<EntidadeBase>().ToList();
 
-            tabelaListaDisciplina.AtualizarRegistros(compromissos);
+            tabelaListaDisciplina.AtualizarRegistros(disciplinas);
 
             return tabelaListaDisciplina;
         }

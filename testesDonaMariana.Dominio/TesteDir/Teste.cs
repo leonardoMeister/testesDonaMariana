@@ -10,12 +10,13 @@ namespace TestesDonaMariana.Domain.TesteDir
 {
     public class Teste : EntidadeBase
     {
-        AnoLetivoEnum _anoLetivo;
-        List<Materia> _listaMaterias;
-        Disciplina _disciplina;
+        
+        Disciplina _disciplina;   List<Materia> _listaMaterias;
         string _nomeProva;
-        List<Questao> _listaQuestoesDisponiveisParaGerarProva;
         List<Questao> _listaQuestoesDoTeste;
+
+        List<Questao> _listaQuestoesDisponiveisParaGerarProva;        
+        AnoLetivoEnum _anoLetivo;
         int _numeroQuestoes;
 
         public AnoLetivoEnum AnoLetivo { get => _anoLetivo; set => _anoLetivo = value; }
@@ -37,7 +38,7 @@ namespace TestesDonaMariana.Domain.TesteDir
             _disciplina = disciplina;
         }
 
-   
+
         public void GerarProva()
         {
             ListaQuestoesDoTeste = new List<Questao>();
@@ -52,25 +53,25 @@ namespace TestesDonaMariana.Domain.TesteDir
                 int number = 0;
                 for (int i = 0; i < _numeroQuestoes; i++)
                 {
-                    number = rd.Next(0, numeroQuestoesNaLista -1);
+                    number = rd.Next(0, numeroQuestoesNaLista - 1);
                     while (numerosAleatoriosQuestoesDevemIrParaProva.Contains(number))
                     {
-                        if (numerosAleatoriosQuestoesDevemIrParaProva.Count >= _numeroQuestoes) 
+                        if (numerosAleatoriosQuestoesDevemIrParaProva.Count >= _numeroQuestoes)
                             break;
                         else
-                            number = rd.Next(0, numeroQuestoesNaLista -1);
+                            number = rd.Next(0, numeroQuestoesNaLista - 1);
                     }
                     numerosAleatoriosQuestoesDevemIrParaProva.Add(number);
                     Console.WriteLine(number.ToString());
                 }
 
-                numerosAleatoriosQuestoesDevemIrParaProva= numerosAleatoriosQuestoesDevemIrParaProva.OrderBy(x => x).ToList();
+                numerosAleatoriosQuestoesDevemIrParaProva = numerosAleatoriosQuestoesDevemIrParaProva.OrderBy(x => x).ToList();
 
-                for(int i = 0; i < numerosAleatoriosQuestoesDevemIrParaProva.Count; i++)
+                for (int i = 0; i < numerosAleatoriosQuestoesDevemIrParaProva.Count; i++)
                 {
                     ListaQuestoesDoTeste.Add(_listaQuestoesDisponiveisParaGerarProva[numerosAleatoriosQuestoesDevemIrParaProva[i]]);
                 }
-            }           
+            }
         }
         public override string Validar()
         {

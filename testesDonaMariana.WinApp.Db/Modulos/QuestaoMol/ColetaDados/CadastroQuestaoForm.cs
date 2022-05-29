@@ -41,13 +41,13 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             
             comboAlternativaCorreta.Items.Clear();
 
-            foreach(string alternativa in listaAlternativas.Items)
+            foreach(Alternativa alternativa in listaAlternativas.Items)
             {
                 comboAlternativaCorreta.Items.Add(alternativa);    
             }
-            foreach(string alternativa in comboAlternativaCorreta.Items)
+            foreach(Alternativa alternativa in comboAlternativaCorreta.Items)
             {
-                if (alternativa == questao.RespostaCorreta) comboAlternativaCorreta.SelectedItem = alternativa;
+                if (alternativa.AlternativaStr == questao.RespostaCorreta) comboAlternativaCorreta.SelectedItem = alternativa;
             }
 
         }
@@ -63,7 +63,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
         {
             txtEnunciado.Text = questao.Enunciado;
 
-            foreach(string alternativa in questao.ListaAlternativas)
+            foreach(Alternativa alternativa in questao.ListaAlternativas)
             { 
                 listaAlternativas.Items.Add(alternativa);
             }
@@ -75,26 +75,26 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             
             foreach(AnoLetivoEnum ano in comboAnoLetivo.Items)
             {
-                if (questao.Disciplina.AnoLetivo == ano) comboAnoLetivo.SelectedItem = ano;
+                if (questao.Materia.Disciplina.AnoLetivo == ano) comboAnoLetivo.SelectedItem = ano;
             }
 
             foreach(Disciplina disc in comboDisciplina.Items)
             {
-                if (questao.Disciplina == disc) comboDisciplina.SelectedItem = disc;
+                if (questao.Materia.Disciplina._id == disc._id) comboDisciplina.SelectedItem = disc;
             }
 
             foreach(Materia mat in comboMateria.Items)
             {
-                if (questao.Materia == mat) comboMateria.SelectedItem = mat;
+                if (questao.Materia._id == mat._id) comboMateria.SelectedItem = mat;
             }
 
         }
 
-        public CadastroQuestaoForm(ControladorDisciplina controlDisci, ControladorQuestao controladorQuestao)
+        public CadastroQuestaoForm()
         {
             InitializeComponent();
-            this.controladorQuestao = controladorQuestao;
-            controlDisciplina = controlDisci;
+            this.controladorQuestao = new ControladorQuestao();
+            controlDisciplina = new ControladorDisciplina();
             CarregarAnosLetivos();
         }
         private void CarregarAnosLetivos()
@@ -178,7 +178,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             if (auxCampo is null or "") MessageBox.Show("Não pode adicionar Alternativa vazia!");
             else
             {
-                listaAlternativas.Items.Add(auxCampo);
+                listaAlternativas.Items.Add(new Alternativa(auxCampo,questao));
                 txtDescricaoAlternativa.Text = "";
                 if (listaAlternativas.Items.Count >= 3) comboAlternativaCorreta.Enabled = true;
             }
@@ -188,13 +188,13 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
         private void AtualizarComboBoxListaAlternativas()
         {
             comboAlternativaCorreta.Items.Clear();
-            foreach (string aux in listaAlternativas.Items)
+            foreach (Alternativa aux in listaAlternativas.Items)
             {
                 comboAlternativaCorreta.Items.Add(aux);
             }
-            foreach(string item in comboAlternativaCorreta.Items)
+            foreach(Alternativa item in comboAlternativaCorreta.Items)
             {
-                if (item == alternativaCorretaSelecionada) comboAlternativaCorreta.SelectedItem = item;
+                if (item.AlternativaStr == alternativaCorretaSelecionada) comboAlternativaCorreta.SelectedItem = item;
             }
 
 
@@ -207,15 +207,17 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.ColetaDados
             else
             {
                 Materia mate = (Materia)comboMateria.SelectedItem;
-                Questao quest = new Questao( txtEnunciado.Text, listaAlternativas.Items.Cast<String>().ToList(),
-                    comboAlternativaCorreta.Text, (Disciplina)comboDisciplina.SelectedItem, mate);
+                List<Alternativa> alternativas = listaAlternativas.Items.Cast<Alternativa>().ToList();
+
+                Questao quest = new Questao( txtEnunciado.Text,alternativas,
+                    Convert.ToString((comboAlternativaCorreta.SelectedIndex)+1), mate);
 
                 if (! (questao is null))
                 {
                     quest._id = questao._id;
                 }
                 
-                var validacao = new ValidadorQuestao(quest,controladorQuestao.SelecionarTodos()).Validate(quest);
+                var validacao = new ValidadorQuestao(quest,controladorQuestao.SelecionarTodasQuestoesComReferencia()).Validate(quest);
 
                 if (validacao.IsValid == false)
                 {

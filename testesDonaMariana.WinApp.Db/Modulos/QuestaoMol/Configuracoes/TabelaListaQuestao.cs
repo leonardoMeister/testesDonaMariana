@@ -30,7 +30,7 @@ namespace testesDonaMariana.WinApp.Modulos.QuestaoMol.Configuracoes
             foreach (Questao questao in questaos)
             {
                 gridQuestao.Rows.Add(questao._id, questao.Enunciado, questao.RespostaCorreta,
-                    questao.Disciplina.Nome, questao.Materia.Nome, questao.ListaAlternativas.Count);
+                    questao.Materia.Disciplina.Nome, questao.Materia.Nome, questao.ListaAlternativas.Count);
             }
         }
 

@@ -46,11 +46,11 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
                 if (disciplina.AnoLetivo.ToString() == ano) comboAnoLetivo.SelectedItem = ano;
             }
         }
-        public CadastroDisciplinaForm(ControladorMateria controlMate, ControladorDisciplina controladorDisciplina)
+        public CadastroDisciplinaForm()
         {
             InitializeComponent();
-            this.controladorMateria = controlMate;
-            this.controladorDisciplina = controladorDisciplina;
+            this.controladorMateria = new ControladorMateria();
+            this.controladorDisciplina = new ControladorDisciplina();
             EsconderMensagensErro();
             CarregarListaAnos();
         }
@@ -84,7 +84,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
 
 
 
-            var validacao = new ValidadorDisciplina(disciplina, controladorDisciplina.SelecionarTodos()).Validate(disciplina);
+            var validacao = new ValidadorDisciplina(disciplina, controladorDisciplina.SelecionarTodasDisciplinasComMateriaEQuestao()).Validate(disciplina);
 
             if (validacao.IsValid == false)
             {
@@ -105,6 +105,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
             }
             else
             {
+                controladorMateria.RemoverReferenciaBimestresMateria(materiaSelecionada._id);
                 var resultadoValidacao = controladorMateria.Excluir(materiaSelecionada._id);
 
                 if (resultadoValidacao.IsValid == false)
@@ -122,21 +123,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
         }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            List<Materia> lista = listaMaterias.Items.Cast<Materia>().ToList();
-            if (lista.Count != 0)
-                foreach (Materia mat in lista)
-                {
-                    if (mat.Nome == txtNomeMateria.Text)
-                    {
-                        MessageBox.Show("Nao pode Adicionar Duas Materias com o mesmo nome na mesma Disciplina");
-                    }
-                    else
-                    {
-                        AdicionarMateriaNaLista();
-
-                    }
-                }
-            else AdicionarMateriaNaLista();
+             AdicionarMateriaNaLista(); 
         }
 
         private void AdicionarMateriaNaLista()
@@ -149,9 +136,11 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
 
         private void EditarMateriaExistenta()
         {
-            Materia mate = PegarMateria(new Materia());
+            Materia materia = (Materia)listaMaterias.SelectedItem;
 
-            var validacao = controladorMateria.Editar(materiaSelecionada._id, mate);
+            Materia mate = PegarMateria(materia);
+
+            var validacao = new ValidadorMateria(mate, null).Validate(mate);
 
             if (validacao.IsValid == false)
             {
@@ -161,9 +150,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
             }
             else
             {
-                disciplina.RemoverMateria(materiaSelecionada);
-                disciplina.AdicionarMateria(mate);
-
+                
                 AtualizarListaMaterias();
             }
 
@@ -172,7 +159,8 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
         {
             Materia mat = PegarMateria();
 
-            var validacao = controladorMateria.InserirNovo(mat);
+            var validacao = new ValidadorMateria(mat, null).Validate(mat);
+                
 
             if (validacao.IsValid == false)
             {
@@ -183,6 +171,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
             else
             {
                 disciplina.AdicionarMateria(mat);
+                mat.Disciplina = disciplina;
                 AtualizarListaMaterias();
             }
         }
@@ -198,7 +187,7 @@ namespace testesDonaMariana.WinApp.Modulos.DisciplinaMol.ColetaDados
                 if (box3.Checked is true) listaBimestres.Add(BimestreEnum.TerceiroBimestre);
                 if (box4.Checked is true) listaBimestres.Add(BimestreEnum.QuartoBimestre);
 
-                Materia mat = new Materia(listaBimestres, nomeMateria);
+                Materia mat = new Materia(listaBimestres, nomeMateria, null);
                 return mat;
             }
             else

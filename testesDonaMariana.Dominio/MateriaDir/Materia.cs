@@ -14,6 +14,8 @@ namespace TestesDonaMariana.Domain.MateriaDir
 
         List<Questao> _listaQuestoes;
         List<BimestreEnum> _listaBimestres;
+        Disciplina _disciplina;
+
         string _nome;
 
         public Materia()
@@ -21,16 +23,18 @@ namespace TestesDonaMariana.Domain.MateriaDir
 
         }
 
-        public Materia(List<BimestreEnum> listaBimestre, string nome)
+        public Materia(List<BimestreEnum> listaBimestre, string nome, Disciplina disc)
         {
             this.ListaQuestoes = new List<Questao>();
             this._listaBimestres = listaBimestre;
             this._nome = nome;
+            this._disciplina = disc;
         }
 
         public List<Questao> ListaQuestoes { get => _listaQuestoes; set => _listaQuestoes = value; }
         public List<BimestreEnum> ListaBimestres { get => _listaBimestres; set => _listaBimestres = value; }
         public string Nome { get => _nome; set => _nome = value; }
+        public Disciplina Disciplina { get => _disciplina; set => _disciplina = value; }
 
         public override string Validar()
         {
