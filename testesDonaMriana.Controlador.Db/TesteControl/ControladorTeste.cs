@@ -30,10 +30,10 @@ namespace testesDonaMriana.Controlador.TesteControl
             this.testes = testes;
         }
 
-        public override string SqlUpdate => throw new NotImplementedException();
-        public override string SqlExiste => throw new NotImplementedException();
+        protected override string SqlUpdate => throw new NotImplementedException();
+        protected override string SqlExiste => throw new NotImplementedException();
 
-        public override string SqlDelete =>
+        protected override string SqlDelete =>
                     @"DELETE FROM TB_TESTE
                       WHERE Id_teste = @ID";
         string SqlDeletarListaQuestoesTestePorFkTeste =
@@ -49,17 +49,17 @@ namespace testesDonaMriana.Controlador.TesteControl
                     @"select fk_questao_id_lista,fk_teste_id_lista
                     from TB_LISTA_TESTE_QUESTOES
                     where fk_teste_id_lista = @ID";
-        public override string SqlInsert =>
+        protected override string SqlInsert =>
                     @"INSERT INTO TB_TESTE
                            (nome_teste,fk_disciplina_id)
                      VALUES
                            (@NOMETESTE , @DISCIPLINAID)";
-        public override string SqlSelectAll =>
+        protected override string SqlSelectAll =>
                     @"SELECT Id_teste
                           ,nome_teste
                           ,fk_disciplina_id
                       FROM TB_TESTE";
-        public override string SqlSelectId =>
+        protected override string SqlSelectId =>
                     @"SELECT Id_teste
                           ,nome_teste
                           ,fk_disciplina_id
@@ -143,27 +143,26 @@ namespace testesDonaMriana.Controlador.TesteControl
 
             foreach (Teste teste in lista)
             {
-                teste.Disciplina = new ControladorDisciplina().SelecionarDisciplinaComReferenciaPorId(teste.Disciplina._id);
-                teste.AnoLetivo = teste.AnoLetivo;
-                teste.ListaMaterias = teste.Disciplina.ListaMaterias;
-                teste.ListaQuestoesDisponiveisParaProva = PegarListaQuestoesDisponiveisParaProva(teste.ListaMaterias);
-                teste.ListaQuestoesDoTeste = new ControladorQuestao().SelecionarQuestoesPorTesteEDisciplina(teste._id);
-                teste.NumeroQuestoes = teste.ListaQuestoesDoTeste.Count;
+                CarregarRefTeste(teste); 
             }
             return lista;
         }
         public Teste SelecionarTesteComReferenciaPorID(int idTeste) 
         {
             Teste teste = DataBase.Get(SqlSelectId, ConverterEmRegistro, AdicionarParametro("ID", idTeste));
-
-            teste.Disciplina = new ControladorDisciplina().SelecionarDisciplinaComReferenciaPorId(teste.Disciplina._id);
-            teste.AnoLetivo = teste.AnoLetivo;
-            teste.ListaMaterias = teste.Disciplina.ListaMaterias;
-            teste.ListaQuestoesDisponiveisParaProva = PegarListaQuestoesDisponiveisParaProva(teste.ListaMaterias);
-            teste.ListaQuestoesDoTeste = new ControladorQuestao().SelecionarQuestoesPorTesteEDisciplina(teste._id );
-            teste.NumeroQuestoes = teste.ListaQuestoesDoTeste.Count;
+            
+            CarregarRefTeste(teste);
 
             return teste;
+        }
+        private void CarregarRefTeste(Teste teste)
+        {
+            teste.Disciplina = new ControladorDisciplina().SelecionarDisciplinaComReferenciaPorId(teste.Disciplina._id);
+            teste.AnoLetivo = teste.Disciplina.AnoLetivo;
+            teste.ListaMaterias = teste.Disciplina.ListaMaterias;
+            teste.ListaQuestoesDisponiveisParaProva = PegarListaQuestoesDisponiveisParaProva(teste.ListaMaterias);
+            teste.ListaQuestoesDoTeste = new ControladorQuestao().SelecionarQuestoesPorTesteEDisciplina(teste._id);
+            teste.NumeroQuestoes = teste.ListaQuestoesDoTeste.Count;
         }
 
         private List<Questao> PegarListaQuestoesDisponiveisParaProva(List<Materia> listaMaterias)
